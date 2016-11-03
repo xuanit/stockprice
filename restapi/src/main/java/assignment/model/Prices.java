@@ -1,6 +1,6 @@
 package assignment.model;
 
-import assignment.controller.CloseDate;
+import assignment.controller.DateClose;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +12,7 @@ public class Prices {
 
     private String ticker;
 
-    private List<CloseDate> closeDates = new ArrayList<>();
+    private List<DateClose> dateCloses = new ArrayList<>();
 
     public String getTicker() {
         return ticker;
@@ -22,11 +22,11 @@ public class Prices {
         this.ticker = ticker;
     }
 
-    public List<CloseDate> getCloseDates() {
-        return closeDates;
+    public List<DateClose> getDateCloses() {
+        return dateCloses;
     }
 
-    public void setCloseDates(List<CloseDate> closeDates) {
-        this.closeDates = closeDates;
+    public void setDateCloses(List<DateClose> dateCloses) {
+        this.dateCloses = dateCloses;
     }
 }

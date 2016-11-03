@@ -1,18 +1,15 @@
 package assignment.service;
 
-import assignment.controller.CloseDate;
+import assignment.controller.DateClose;
+import assignment.model.DayMovingAverage;
 import assignment.model.Prices;
-import assignment.datasource.DataSet;
 import assignment.datasource.QuandlDataSource;
-import assignment.datasource.Response;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
-import java.text.DecimalFormat;
-import java.text.ParseException;
 import java.time.LocalDate;
 import java.util.*;
 
@@ -26,6 +23,8 @@ public class ClosePriceService {
 
     static final String API = "https://www.quandl.com/api/v3/datasets/WIKI/";
 
+    private static final int DATE_DELTA = 200 * 2;
+
     @Autowired
     private QuandlDataSource quandlDataSource;
 
@@ -34,10 +33,30 @@ public class ClosePriceService {
     }
 
     public Prices getClosePrices(String ticker, LocalDate startDate, LocalDate endDate) throws QuandlDataSource.InvalidTicker {
-        Map<String, Object> params = new LinkedHashMap<>();
-        params.put("column_index", 4);
-        params.put("start_date", startDate);
-        params.put("end_date", endDate);
-        return quandlDataSource.getDataSet(ticker, params);
+        return quandlDataSource.getClosePrices(ticker, startDate, endDate);
+    }
+
+    public DayMovingAverage get200DMA(String ticker, LocalDate startDate) throws QuandlDataSource.InvalidTicker {
+        Prices prices = quandlDataSource.getClosePrices(ticker, startDate, 200);
+        if(prices == null || prices.getDateCloses() == null || prices.getDateCloses().size() < 200) {
+            return null;
+        }
+        BigDecimal sumOfPrices = BigDecimal.ZERO;
+        for(int index = 0; index <  200; ++index){
+            DateClose dateClose = prices.getDateCloses().get(index);
+            sumOfPrices = sumOfPrices.add(dateClose.getPrice());
+        }
+        BigDecimal avg = sumOfPrices.divide(BigDecimal.valueOf(200));
+        DayMovingAverage dayMovingAverage = new DayMovingAverage(prices.getTicker(), avg);
+        return dayMovingAverage;
+    }
+
+    public LocalDate getFirstStartDateHaving200DMA(String ticker) throws QuandlDataSource.InvalidTicker {
+        Prices prices = quandlDataSource.getClosePrices(ticker, 200);
+        if(prices != null && prices.getDateCloses() != null && prices.getDateCloses().size() == 200) {
+            List<DateClose> dateCloses = prices.getDateCloses();
+            return dateCloses.get(0).getDate();
+        }
+        return  null;
     }
 }

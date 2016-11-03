@@ -4,15 +4,14 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.Date;
 
 /**
  * Created by xuan on 11/1/2016.
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class CloseDate {
+public class DateClose implements Comparable<DateClose> {
 
-    public CloseDate(LocalDate date, BigDecimal price){
+    public DateClose(LocalDate date, BigDecimal price){
         this.date = date;
         this.price = price;
     }
@@ -28,4 +27,12 @@ public class CloseDate {
     private LocalDate date;
 
     private BigDecimal price;
+
+    @Override
+    public int compareTo(DateClose dateClose) {
+        if(dateClose == null && this.date == null && dateClose.date == null) {
+            throw new NullPointerException("provided close date is null");
+        }
+        return this.date.compareTo(dateClose.date);
+    }
 }

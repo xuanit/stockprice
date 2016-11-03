@@ -1,19 +1,16 @@
 package assignment.controller;
 
 import assignment.datasource.QuandlDataSource;
+import assignment.model.DayMovingAverage;
 import assignment.model.Prices;
 import assignment.service.ClosePriceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeParseException;
 
 /**
  * Created by xuan on 11/1/2016.
@@ -25,28 +22,22 @@ public class ClosePriceController {
     @Autowired
     private ClosePriceService closePriceService;
 
-    public ClosePriceController(ClosePriceService closePriceService) {
+    private static final String INVALID_TICKER_ERROR = "Invalid ticker";
+
+    @Autowired
+    private StringToLocalDateConverter stringToLocalDateConverter;
+
+    public ClosePriceController(ClosePriceService closePriceService, StringToLocalDateConverter stringToLocalDateConverter) {
         this.closePriceService = closePriceService;
+        this.stringToLocalDateConverter = stringToLocalDateConverter;
     }
 
-    private static final String DATE_FORMAT_ERROR =  "%s is not recognzied.Please provide YYYY-MM-DD";
-
-    @RequestMapping("closePrice")
+    @RequestMapping(value = "closePrice", method = RequestMethod.GET)
     public HttpEntity<ClosePriceResponse> getClosePrices(@PathVariable("tickersymbol") String ticker,
                                                          @RequestParam("startDate") String startDateParam, @RequestParam("endDate") String endDateParam ){
-        LocalDate startDate = null;
-        LocalDate endDate = null;
         ClosePriceResponse response = new ClosePriceResponse();
-        try{
-            startDate = LocalDate.parse(startDateParam);
-        }catch (DateTimeParseException ex){
-            response.addError(String.format(DATE_FORMAT_ERROR, "startDate"));
-        }
-        try{
-            endDate = LocalDate.parse(endDateParam);
-        }catch (DateTimeParseException ex) {
-            response.addError(String.format(DATE_FORMAT_ERROR, "endDate"));
-        }
+        LocalDate startDate = stringToLocalDateConverter.convert(startDateParam, "startDate", response);
+        LocalDate endDate = stringToLocalDateConverter.convert(endDateParam, "endDate", response);
         if(startDate != null && endDate != null && startDate.isAfter(endDate)){
             response.addError("startDate is after endDate.");
         }
@@ -57,15 +48,38 @@ public class ClosePriceController {
         try {
             prices = closePriceService.getClosePrices(ticker, startDate, endDate);
         } catch (QuandlDataSource.InvalidTicker invalidTicker) {
-            response.addError("Invalid ticker");
+            response.addError(INVALID_TICKER_ERROR);
             return new ResponseEntity<ClosePriceResponse>(response, HttpStatus.NOT_FOUND);
         }
         response.setPrices(prices);
         return  new ResponseEntity<ClosePriceResponse>(response, HttpStatus.OK);
     }
 
-    @RequestMapping("test")
-    public HttpEntity<Void> test(@RequestParam(value = "date", required = false) LocalDate date) {
-        return new ResponseEntity<Void>(HttpStatus.OK);
+    @RequestMapping(value = "200dma", method = RequestMethod.GET)
+    public HttpEntity<DayMovingAverageResponse> get200DMA(@PathVariable("tickersymbol")String ticker, @RequestParam("startDate") String startDateParam){
+        DayMovingAverageResponse response = new DayMovingAverageResponse();
+        LocalDate startDate = stringToLocalDateConverter.convert(startDateParam, "startDate", response);
+        if(response.getErrors() != null) {
+            return new ResponseEntity<DayMovingAverageResponse>(response, HttpStatus.NOT_FOUND);
+        }
+        DayMovingAverage dayMovingAverage = null;
+        try {
+            dayMovingAverage = this.closePriceService.get200DMA(ticker, startDate);
+            if(dayMovingAverage == null){
+                LocalDate firstStartDateHaving200DMA = this.closePriceService.getFirstStartDateHaving200DMA(ticker);
+                response.addError("There is not enough data for 200 day moving average calculation. The first start date having enough data is " + firstStartDateHaving200DMA.toString());
+            }else {
+                response.setDayMovingAverage(dayMovingAverage);
+            }
+        } catch (QuandlDataSource.InvalidTicker invalidTicker) {
+            response.addError(INVALID_TICKER_ERROR);
+            return new ResponseEntity<DayMovingAverageResponse>(response, HttpStatus.NOT_FOUND);
+        }
+        if(response.getErrors() != null) {
+            return new ResponseEntity<DayMovingAverageResponse>(response, HttpStatus.NOT_FOUND);
+        }else {
+            return new ResponseEntity<DayMovingAverageResponse>(response, HttpStatus.OK);
+        }
     }
+
 }

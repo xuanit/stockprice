@@ -1,6 +1,6 @@
 package assignment.controller.serializer;
 
-import assignment.controller.CloseDate;
+import assignment.controller.DateClose;
 import assignment.model.Prices;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -9,7 +9,6 @@ import com.fasterxml.jackson.databind.SerializerProvider;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
-import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 
 /**
@@ -23,12 +22,11 @@ public class PricesSerializer extends JsonSerializer<Prices> {
         gen.writeStartObject();
         gen.writeObjectField("Ticker", value.getTicker());
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("YYYY-MM-dd");
-        DecimalFormat decimalFormat = new DecimalFormat("0.00");
-        for(CloseDate closeDate : value.getCloseDates()) {
+        for(DateClose dateClose : value.getDateCloses()) {
             gen.writeFieldName("DateClose");
             gen.writeStartArray();
-            gen.writeString(closeDate.getDate().toString());
-            gen.writeObject(decimalFormat.format(closeDate.getPrice()));
+            gen.writeString(dateClose.getDate().toString());
+            gen.writeObject(dateClose.getPrice().toString());
             gen.writeEndArray();
         }
         gen.writeEndObject();

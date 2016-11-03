@@ -11,9 +11,8 @@ import java.util.List;
  * Created by xuan on 11/1/2016.
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class ClosePriceResponse extends ResourceSupport {
+public class ClosePriceResponse extends BaseResponse {
 
-    private List<String> errors;
 
     private Prices prices;
 
@@ -23,16 +22,5 @@ public class ClosePriceResponse extends ResourceSupport {
 
     public void setPrices(Prices prices) {
         this.prices = prices;
-    }
-
-    public List<String> getErrors() {
-        return errors;
-    }
-
-    public void addError(String error) {
-        if(errors == null) {
-            errors = new ArrayList<>();
-        }
-        errors.add(error);
     }
 }
