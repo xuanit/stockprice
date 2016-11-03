@@ -1,4 +1,4 @@
-package assignment.controller;
+package assignment.controller.response;
 
 import org.springframework.hateoas.ResourceSupport;
 
@@ -21,5 +21,9 @@ public class BaseResponse extends ResourceSupport {
 
     public List<String> getErrors() {
         return errors;
+    }
+
+    public boolean hasError(){
+        return errors != null && errors.size() > 0;
     }
 }

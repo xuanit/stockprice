@@ -1,6 +1,6 @@
 package assignment.datasource;
 
-import assignment.controller.DateClose;
+import assignment.model.DateClose;
 import assignment.model.Prices;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -63,8 +63,8 @@ public class QuandlDataSource {
     }
     private static  final String API_URL = "https://www.quandl.com/api/v3/datasets/WIKI/";
 
-    public Prices getClosePrices(String dateSetName, LocalDate startDate, LocalDate endDate) throws InvalidTicker {
-        Prices prices = this.getDataSet(dateSetName);
+    public Prices getClosePrices(String ticker, LocalDate startDate, LocalDate endDate) throws InvalidTicker {
+        Prices prices = this.getDataSet(ticker);
         List<DateClose> dateCloses = prices.getDateCloses();
         DateClose dummyStartDateClose = new DateClose(startDate, BigDecimal.ZERO);
         DateClose dummyEndDateClose = new DateClose(endDate, BigDecimal.ZERO);
@@ -76,8 +76,8 @@ public class QuandlDataSource {
         return prices;
     }
 
-    public Prices getClosePrices(String tickerSymbol, LocalDate startDate, int limit) throws InvalidTicker {
-        Prices prices = this.getDataSet(tickerSymbol);
+    public Prices getClosePrices(String ticker, LocalDate startDate, int limit) throws InvalidTicker {
+        Prices prices = this.getDataSet(ticker);
         List<DateClose> dateCloses = prices.getDateCloses();
         DateClose startDateClose = new DateClose(startDate, BigDecimal.ZERO);
         int startCloseDateIndex = Math.abs(Collections.binarySearch(dateCloses, startDateClose));
@@ -86,8 +86,8 @@ public class QuandlDataSource {
         return prices;
     }
 
-    public Prices getClosePrices(String tickerSymbol, int limit) throws InvalidTicker {
-        Prices prices = this.getDataSet(tickerSymbol);
+    public Prices getClosePrices(String ticker, int limit) throws InvalidTicker {
+        Prices prices = this.getDataSet(ticker);
         List<DateClose> dateCloses = prices.getDateCloses();
         int startIndex = dateCloses.size() > limit? dateCloses.size() - limit: 0;
         prices.setDateCloses(dateCloses.subList(startIndex, dateCloses.size()));
@@ -98,7 +98,7 @@ public class QuandlDataSource {
         StringBuilder urlBuilder = new StringBuilder();
         urlBuilder.append(API_URL).append("{dataSet}.json?");
         Map<String, Object> params = new LinkedHashMap<>();
-        params.put("api_key", "N1us7CxC5N1tiCVFTdsk");//for testing at local
+        //params.put("api_key", "N1us7CxC5N1tiCVFTdsk");//for testing at local
         params.put(QuandlDataSource.COLUMN_INDEX, QuandlDataSource.CLOSE_COLUMN);
         params.put(ORDER, ORDER_ASC);
         for(String param : params.keySet()) {

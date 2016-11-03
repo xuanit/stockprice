@@ -1,5 +1,7 @@
 package assignment.controller;
 
+import assignment.controller.response.ClosePriceResponse;
+import assignment.controller.response.DayMovingAverageResponse;
 import assignment.datasource.QuandlDataSource;
 import assignment.model.DayMovingAverage;
 import assignment.model.Prices;
@@ -81,5 +83,6 @@ public class ClosePriceController {
             return new ResponseEntity<DayMovingAverageResponse>(response, HttpStatus.OK);
         }
     }
+
 
 }

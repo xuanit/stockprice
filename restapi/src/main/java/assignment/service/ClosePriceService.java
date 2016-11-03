@@ -1,7 +1,8 @@
 package assignment.service;
 
-import assignment.controller.DateClose;
+import assignment.model.DateClose;
 import assignment.model.DayMovingAverage;
+import assignment.model.DayMovingAverageList;
 import assignment.model.Prices;
 import assignment.datasource.QuandlDataSource;
 import org.slf4j.Logger;
@@ -21,10 +22,6 @@ public class ClosePriceService {
 
     private static Logger logger = LoggerFactory.getLogger(ClosePriceService.class);
 
-    static final String API = "https://www.quandl.com/api/v3/datasets/WIKI/";
-
-    private static final int DATE_DELTA = 200 * 2;
-
     @Autowired
     private QuandlDataSource quandlDataSource;
 
@@ -36,8 +33,8 @@ public class ClosePriceService {
         return quandlDataSource.getClosePrices(ticker, startDate, endDate);
     }
 
-    public DayMovingAverage get200DMA(String ticker, LocalDate startDate) throws QuandlDataSource.InvalidTicker {
-        Prices prices = quandlDataSource.getClosePrices(ticker, startDate, 200);
+    public DayMovingAverage get200DMA(String tickerSymbol, LocalDate startDate) throws QuandlDataSource.InvalidTicker {
+        Prices prices = quandlDataSource.getClosePrices(tickerSymbol, startDate, 200);
         if(prices == null || prices.getDateCloses() == null || prices.getDateCloses().size() < 200) {
             return null;
         }
@@ -58,5 +55,32 @@ public class ClosePriceService {
             return dateCloses.get(0).getDate();
         }
         return  null;
+    }
+
+    public DayMovingAverageList get200DMAList(List<String> tickerSymbols, LocalDate startDate) {
+        DayMovingAverageList dmaList = new DayMovingAverageList(startDate);
+        for(String tickerSymbol: tickerSymbols) {
+            if("".equals(tickerSymbol)) {
+                continue;
+            }
+            LocalDate tickerStartDate = startDate;
+            DayMovingAverage dma = null;
+            try {
+                dma = this.get200DMA(tickerSymbol, startDate);
+                if(dma == null){
+                    tickerStartDate = this.getFirstStartDateHaving200DMA(tickerSymbol);
+                    dma = this.get200DMA(tickerSymbol, tickerStartDate);
+
+                }
+                if(dma != null) {
+                    dma.setStartDate(tickerStartDate);
+                }
+            } catch (QuandlDataSource.InvalidTicker invalidTicker) {
+                dma = new DayMovingAverage(tickerSymbol, null);
+                dma.setErrorMessage("Invalid Ticker Symbol.");
+            }
+            dmaList.getDayMovingAverages().add(dma);
+        }
+        return dmaList;
     }
 }

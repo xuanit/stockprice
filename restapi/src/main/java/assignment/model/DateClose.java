@@ -1,4 +1,4 @@
-package assignment.controller;
+package assignment.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 

@@ -1,6 +1,6 @@
 package assignment.controller.serializer;
 
-import assignment.controller.DateClose;
+import assignment.model.DateClose;
 import assignment.model.Prices;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.JsonProcessingException;

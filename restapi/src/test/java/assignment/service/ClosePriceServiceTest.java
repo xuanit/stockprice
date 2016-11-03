@@ -1,6 +1,7 @@
 package assignment.service;
 
 import assignment.model.DayMovingAverage;
+import assignment.model.DayMovingAverageList;
 import assignment.model.Prices;
 import assignment.datasource.QuandlDataSource;
 import assignment.datasource.Response;
@@ -19,6 +20,7 @@ import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.Month;
+import java.util.Arrays;
 
 import static org.springframework.test.web.client.ExpectedCount.*;
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.method;
@@ -97,7 +99,7 @@ public class ClosePriceServiceTest {
     }
 
     @Test
-    public void testGetClosePricesWithNoMatchStartDateAndEndDate() throws ParseException, QuandlDataSource.InvalidTicker {
+    public void testGetClosePricesWithNoStartDateAndEndDateMatch() throws ParseException, QuandlDataSource.InvalidTicker {
         String dataSet = "FB";
         this.server.expect(manyTimes(), requestTo("https://www.quandl.com/api/v3/datasets/WIKI/FB.json?column_index=4&order=asc"))
                 .andExpect(method(HttpMethod.GET))
@@ -307,5 +309,159 @@ public class ClosePriceServiceTest {
         this.server.verify();
         assertEquals(startDate, firstStartDate);
 
+    }
+
+    @Test
+    public void testGetDayMovingAverageList() {
+        String ticker = "FB";
+        StringBuilder dataBuilder = new StringBuilder();
+        LocalDate startDate = LocalDate.of(2016, Month.OCTOBER, 31);
+        BigDecimal startPrice = BigDecimal.ZERO;
+        BigDecimal delta = BigDecimal.valueOf(25).divide(BigDecimal.valueOf(100));//delta is 0.25
+        for(int index = 0; index < 201; ++index) {
+            LocalDate date = startDate.plusDays(index);
+            BigDecimal price = startPrice.add(delta.multiply(BigDecimal.valueOf(index)));
+            dataBuilder.append(",[\"").append(date).append("\",").append(price).append("]");
+        }
+        String data = dataBuilder.toString().substring(1);
+        this.server.expect(once(), requestTo("https://www.quandl.com/api/v3/datasets/WIKI/FB.json?column_index=4&order=asc"))
+                .andExpect(method(HttpMethod.GET))
+                .andRespond(withSuccess("{" +
+                        "\"dataset\" : {" +
+                        "\"id\" : 9775687," +
+                        "\"dataset_code\" : \"FB\"," +
+                        "\"database_code\" : \"WIKI\"," +
+                        "\"name\" : \"Facebook Inc. (FB) Prices, Dividends, Splits and Trading Volume\"," +
+                        "\"description\" : \"description\"," +
+                        "\"refreshed_at\" : \"2016-10-31T21:47:31.671Z\"," +
+                        "\"newest_available_date\" : \"2016-10-31\"," +
+                        "\"oldest_available_date\" : \"2012-05-18\"," +
+                        "\"column_names\" : [\"Date\", \"Close\"]," +
+                        "\"frequency\" : \"daily\"," +
+                        "\"type\" : \"Time Series\"," +
+                        "\"premium\" : false," +
+                        "\"limit\" : null," +
+                        "\"transform\" : null," +
+                        "\"column_index\" : 4," +
+                        "\"start_date\" : \"2016-10-31\"," +
+                        "\"end_date\" : \"2016-11-01\"," +
+                        "\"data\" : [" + data + "]," +
+                        "\"collapse\" : null," +
+                        "\"order\" : null," +
+                        "\"database_id\" : 4922" +
+                        "}" +
+                        "}", MediaType.APPLICATION_JSON));
+
+        this.server.expect(once(), requestTo("https://www.quandl.com/api/v3/datasets/WIKI/MSFT.json?column_index=4&order=asc"))
+                .andExpect(method(HttpMethod.GET))
+                .andRespond(withSuccess("{" +
+                        "\"dataset\" : {" +
+                        "\"id\" : 9775687," +
+                        "\"dataset_code\" : \"MSFT\"," +
+                        "\"database_code\" : \"WIKI\"," +
+                        "\"name\" : \"Facebook Inc. (FB) Prices, Dividends, Splits and Trading Volume\"," +
+                        "\"description\" : \"description\"," +
+                        "\"refreshed_at\" : \"2016-10-31T21:47:31.671Z\"," +
+                        "\"newest_available_date\" : \"2016-10-31\"," +
+                        "\"oldest_available_date\" : \"2012-05-18\"," +
+                        "\"column_names\" : [\"Date\", \"Close\"]," +
+                        "\"frequency\" : \"daily\"," +
+                        "\"type\" : \"Time Series\"," +
+                        "\"premium\" : false," +
+                        "\"limit\" : null," +
+                        "\"transform\" : null," +
+                        "\"column_index\" : 4," +
+                        "\"start_date\" : \"2016-10-31\"," +
+                        "\"end_date\" : \"2016-11-01\"," +
+                        "\"data\" : [" + data + "]," +
+                        "\"collapse\" : null," +
+                        "\"order\" : null," +
+                        "\"database_id\" : 4922" +
+                        "}" +
+                        "}", MediaType.APPLICATION_JSON));
+
+        DayMovingAverageList dayMovingAverageList = this.closePriceService.get200DMAList(Arrays.asList("FB", "MSFT"), startDate);
+
+        this.server.verify();
+        assertEquals(startDate, dayMovingAverageList.getStartDate());
+        assertEquals(2, dayMovingAverageList.getDayMovingAverages().size());
+        DayMovingAverage fb200Dma = dayMovingAverageList.getDayMovingAverages().get(0);
+        assertEquals(startDate, fb200Dma.getStartDate());
+        assertEquals("FB", fb200Dma.getTicker());
+        assertEquals("24.875", fb200Dma.getAvg().toPlainString());
+        DayMovingAverage msftDma = dayMovingAverageList.getDayMovingAverages().get(1);
+        assertEquals(startDate, msftDma.getStartDate());
+        assertEquals("MSFT", msftDma.getTicker());
+        assertEquals("24.875", msftDma.getAvg().toPlainString());
+    }
+
+    @Test
+    public void testGetDayMovingAverageListWithInvalidTickerSymbol() {
+        LocalDate startDate = LocalDate.of(2016, Month.OCTOBER, 31);
+        String dataSet = "INVALID";
+        this.server.expect(manyTimes(), requestTo("https://www.quandl.com/api/v3/datasets/WIKI/INVALID.json?column_index=4&order=asc"))
+                .andExpect(method(HttpMethod.GET))
+                .andRespond(withStatus(HttpStatus.NOT_FOUND)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .body("{" +
+                                "\"quandl_error\" : {" +
+                                "\"code\" : \"QECx02\"," +
+                                "\"message\" : \"You have submitted an incorrect Quandl code. Please check your Quandl codes and try again.\"" +
+                                "}" +
+                                "}"));
+
+        DayMovingAverageList dmaList = this.closePriceService.get200DMAList(Arrays.asList("INVALID"), startDate);
+        assertEquals(startDate, dmaList.getStartDate());
+        assertEquals(1, dmaList.getDayMovingAverages().size());
+        DayMovingAverage invalidDma = dmaList.getDayMovingAverages().get(0);
+        assertEquals("INVALID", invalidDma.getTicker());
+        assertNotNull(invalidDma.getErrorMessage());
+        assertNull(invalidDma.getAvg());
+    }
+
+    @Test
+    public void testGetDayMovingAverageForFirstAvailableStartDate() {
+        StringBuilder dataBuilder = new StringBuilder();
+        LocalDate startDate = LocalDate.of(2016, Month.OCTOBER, 31);
+        BigDecimal startPrice = BigDecimal.ZERO;
+        BigDecimal delta = BigDecimal.valueOf(25).divide(BigDecimal.valueOf(100));//delta is 0.25
+        for(int index = 0; index < 200; ++index) {
+            LocalDate date = startDate.plusDays(index);
+            BigDecimal price = startPrice.add(delta.multiply(BigDecimal.valueOf(index)));
+            dataBuilder.append(",[\"").append(date).append("\",").append(price).append("]");
+        }
+        String data = dataBuilder.toString().substring(1);
+        this.server.expect(manyTimes(), requestTo("https://www.quandl.com/api/v3/datasets/WIKI/FB.json?column_index=4&order=asc"))
+                .andExpect(method(HttpMethod.GET))
+                .andRespond(withSuccess("{" +
+                        "\"dataset\" : {" +
+                        "\"id\" : 9775687," +
+                        "\"dataset_code\" : \"FB\"," +
+                        "\"database_code\" : \"WIKI\"," +
+                        "\"name\" : \"Facebook Inc. (FB) Prices, Dividends, Splits and Trading Volume\"," +
+                        "\"description\" : \"description\"," +
+                        "\"refreshed_at\" : \"2016-10-31T21:47:31.671Z\"," +
+                        "\"newest_available_date\" : \"2016-10-31\"," +
+                        "\"oldest_available_date\" : \"2012-05-18\"," +
+                        "\"column_names\" : [\"Date\", \"Close\"]," +
+                        "\"frequency\" : \"daily\"," +
+                        "\"type\" : \"Time Series\"," +
+                        "\"premium\" : false," +
+                        "\"limit\" : null," +
+                        "\"transform\" : null," +
+                        "\"column_index\" : 4," +
+                        "\"start_date\" : \"2016-10-31\"," +
+                        "\"end_date\" : \"2016-11-01\"," +
+                        "\"data\" : [" + data + "]," +
+                        "\"collapse\" : null," +
+                        "\"order\" : null," +
+                        "\"database_id\" : 4922" +
+                        "}" +
+                        "}", MediaType.APPLICATION_JSON));
+        DayMovingAverageList dmaList = this.closePriceService.get200DMAList(Arrays.asList("FB"), startDate.plusDays(1));
+        assertEquals(1, dmaList.getDayMovingAverages().size());
+        DayMovingAverage fbDma = dmaList.getDayMovingAverages().get(0);
+        assertEquals(startDate, fbDma.getStartDate());
+        assertEquals("24.875", fbDma.getAvg().toPlainString());
     }
 }

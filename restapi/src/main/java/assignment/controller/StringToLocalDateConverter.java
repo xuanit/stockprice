@@ -1,10 +1,10 @@
 package assignment.controller;
 
+import assignment.controller.response.BaseResponse;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
-import java.util.List;
 
 /**
  * Created by xuan on 11/2/2016.

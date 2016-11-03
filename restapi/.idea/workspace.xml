@@ -42,22 +42,49 @@
       <file leaf-file-name="ClosePriceServiceTest.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/java/assignment/service/ClosePriceServiceTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="413">
-              <caret line="307" column="20" selection-start-line="307" selection-start-column="8" selection-end-line="307" selection-end-column="20" />
+            <state relative-caret-position="323">
+              <caret line="124" column="82" selection-start-line="124" selection-start-column="79" selection-end-line="124" selection-end-column="82" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="method#testGetClosePricesWithInvalidTicker#0;class#ClosePriceServiceTest#0" expanded="false" />
-                <element signature="method#testGet200DMAWithAvailableData#0;class#ClosePriceServiceTest#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="QuandlDataSource.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="QuandlDataSource.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/assignment/datasource/QuandlDataSource.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-170">
-              <caret line="100" column="76" selection-start-line="100" selection-start-column="76" selection-end-line="100" selection-end-column="76" />
+            <state relative-caret-position="243">
+              <caret line="100" column="50" selection-start-line="100" selection-start-column="50" selection-end-line="100" selection-end-column="50" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="class#InvalidTicker#0;class#QuandlDataSource#0" expanded="false" />
+                <element signature="method#QuandlDataSource#0;class#QuandlDataSource#0" expanded="false" />
+                <element signature="method#getClosePrices#0;class#QuandlDataSource#0" expanded="false" />
+                <element signature="method#getClosePrices#1;class#QuandlDataSource#0" expanded="false" />
+                <element signature="method#getClosePrices#2;class#QuandlDataSource#0" expanded="false" />
+                <element signature="method#checkErrors#0;class#QuandlDataSource#0" expanded="false" />
+                <element signature="method#convertToPrices#0;class#QuandlDataSource#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ClosePriceController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/assignment/controller/ClosePriceController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="102">
+              <caret line="36" column="50" selection-start-line="36" selection-start-column="49" selection-end-line="36" selection-end-column="50" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DayMovingAverageController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/assignment/controller/DayMovingAverageController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="396">
+              <caret line="48" column="79" selection-start-line="48" selection-start-column="75" selection-end-line="48" selection-end-column="88" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -65,12 +92,67 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ClosePriceController.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/assignment/controller/ClosePriceController.java">
+      <file leaf-file-name="DayMovingAverageResponse.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/assignment/controller/response/DayMovingAverageResponse.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="212">
-              <caret line="57" column="13" selection-start-line="57" selection-start-column="13" selection-end-line="57" selection-end-column="13" />
+            <state relative-caret-position="136">
+              <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PricesSerializer.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/assignment/controller/serializer/PricesSerializer.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="238">
+              <caret line="23" column="64" selection-start-line="23" selection-start-column="48" selection-end-line="23" selection-end-column="64" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ClosePriceService.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/assignment/service/ClosePriceService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-777">
+              <caret line="4" column="45" selection-start-line="4" selection-start-column="45" selection-end-line="4" selection-end-column="45" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ClosePriceResponse.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/assignment/controller/response/ClosePriceResponse.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="153">
+              <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BaseResponse.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/assignment/controller/response/BaseResponse.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="357">
+              <caret line="26" column="51" selection-start-line="26" selection-start-column="51" selection-end-line="26" selection-end-column="51" />
+              <folding>
+                <element signature="e#525#526#0" expanded="true" />
+                <element signature="e#583#584#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DayMovingAverageListResponse.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/assignment/controller/response/DayMovingAverageListResponse.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="204">
+              <caret line="12" column="28" selection-start-line="12" selection-start-column="28" selection-end-line="12" selection-end-column="28" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -482,15 +564,24 @@
         <option value="$PROJECT_DIR$/src/main/java/assignment/controller/DayMovingAverageResponse.java" />
         <option value="$PROJECT_DIR$/src/main/java/assignment/controller/StringToLocalDatConverter.java" />
         <option value="$PROJECT_DIR$/src/main/java/assignment/controller/serializer/PricesSerializer.java" />
-        <option value="$PROJECT_DIR$/src/main/java/assignment/model/DayMovingAverage.java" />
         <option value="$PROJECT_DIR$/src/test/java/assignment/controller/ClosePriceControllerTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/assignment/controller/CloseDate.java" />
         <option value="$PROJECT_DIR$/src/main/java/assignment/model/Prices.java" />
         <option value="$PROJECT_DIR$/src/main/java/assignment/controller/StringToLocalDateConverter.java" />
-        <option value="$PROJECT_DIR$/src/main/java/assignment/service/ClosePriceService.java" />
-        <option value="$PROJECT_DIR$/src/test/java/assignment/service/ClosePriceServiceTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/assignment/datasource/QuandlDataSource.java" />
         <option value="$PROJECT_DIR$/src/main/java/assignment/controller/ClosePriceController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/assignment/controller/response/DayMovingAverageResponse.java" />
+        <option value="$PROJECT_DIR$/src/main/java/assignment/controller/response/DayMovingAverages.java" />
+        <option value="$PROJECT_DIR$/src/main/java/assignment/controller/response/DayMovingAverageList.java" />
+        <option value="$PROJECT_DIR$/src/main/java/assignment/controller/response/DayMovingAverageListResponse.java" />
+        <option value="$PROJECT_DIR$/src/main/java/assignment/model/DayMovingAverageList.java" />
+        <option value="$PROJECT_DIR$/src/main/java/assignment/model/DayMovingAverage.java" />
+        <option value="$PROJECT_DIR$/src/main/java/assignment/controller/response/BaseResponse.java" />
+        <option value="$PROJECT_DIR$/src/main/java/assignment/controller/DayMovingAverageController.java" />
+        <option value="$PROJECT_DIR$/src/test/java/assignment/controller/DayMovingAverageControllerTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/assignment/datasource/QuandlDataSource.java" />
+        <option value="$PROJECT_DIR$/src/test/java/assignment/service/ClosePriceServiceTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/assignment/service/ClosePriceService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/assignment/controller/response/ClosePriceResponse.java" />
       </list>
     </option>
   </component>
@@ -510,7 +601,7 @@
   <component name="ProjectFrameBounds">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
-    <option name="width" value="1382" />
+    <option name="width" value="1370" />
     <option name="height" value="744" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
@@ -538,9 +629,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="Scratches" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -586,6 +674,32 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="service" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="restapi" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="restapi" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test" />
+              <option name="myItemType" value="org.jetbrains.plugins.gradle.projectView.GradleTreeStructureProvider$GradleSourceSetDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="assignment" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -783,8 +897,79 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="restapi" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="restapi" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="org.jetbrains.plugins.gradle.projectView.GradleTreeStructureProvider$GradleSourceSetDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="assignment" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="controller" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="serializer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="restapi" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="restapi" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="org.jetbrains.plugins.gradle.projectView.GradleTreeStructureProvider$GradleSourceSetDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="assignment" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="controller" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="response" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -793,20 +978,20 @@
     <property name="js-jscs-nodeInterpreter" value="C:\Program Files\nodejs\node.exe" />
     <property name="extract.method.default.visibility" value="private" />
   </component>
-  <component name="RunManager" selected="JUnit.ClosePriceServiceTest.testGetFirstStartDate">
-    <configuration default="false" name="ClosePriceServiceTest.testGetClosePrices" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.All in restapi_test">
+    <configuration default="false" name="DayMovingAverageControllerTest.testGetDayMovingAverageListWithTwoTicker" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
-          <option name="PATTERN" value="assignment.service.*" />
+          <option name="PATTERN" value="assignment.controller.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
       <module name="restapi_test" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="assignment.service" />
-      <option name="MAIN_CLASS_NAME" value="assignment.service.ClosePriceServiceTest" />
-      <option name="METHOD_NAME" value="testGetClosePrices" />
+      <option name="PACKAGE_NAME" value="assignment.controller" />
+      <option name="MAIN_CLASS_NAME" value="assignment.controller.DayMovingAverageControllerTest" />
+      <option name="METHOD_NAME" value="testGetDayMovingAverageListWithTwoTicker" />
       <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" />
@@ -820,18 +1005,70 @@
       <patterns />
       <method />
     </configuration>
-    <configuration default="false" name="ClosePriceServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration default="false" name="DayMovingAverageControllerTest.testGetDayMovingAverageListWithInvalidStartDate" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
-          <option name="PATTERN" value="assignment.service.*" />
+          <option name="PATTERN" value="assignment.controller.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
       <module name="restapi_test" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="assignment.service" />
-      <option name="MAIN_CLASS_NAME" value="assignment.service.ClosePriceServiceTest" />
+      <option name="PACKAGE_NAME" value="assignment.controller" />
+      <option name="MAIN_CLASS_NAME" value="assignment.controller.DayMovingAverageControllerTest" />
+      <option name="METHOD_NAME" value="testGetDayMovingAverageListWithInvalidStartDate" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+      <method />
+    </configuration>
+    <configuration default="false" name="DayMovingAverageControllerTest.testGetDayMovingAverageListWithInvalidTicker" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="assignment.controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="restapi_test" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="assignment.controller" />
+      <option name="MAIN_CLASS_NAME" value="assignment.controller.DayMovingAverageControllerTest" />
+      <option name="METHOD_NAME" value="testGetDayMovingAverageListWithInvalidTicker" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+      <method />
+    </configuration>
+    <configuration default="false" name="DayMovingAverageControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="assignment.controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="restapi_test" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="assignment.controller" />
+      <option name="MAIN_CLASS_NAME" value="assignment.controller.DayMovingAverageControllerTest" />
       <option name="METHOD_NAME" />
       <option name="TEST_OBJECT" value="class" />
       <option name="VM_PARAMETERS" value="-ea" />
@@ -855,58 +1092,6 @@
       <option name="MAIN_CLASS_NAME" />
       <option name="METHOD_NAME" />
       <option name="TEST_OBJECT" value="package" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <envs />
-      <patterns />
-      <method />
-    </configuration>
-    <configuration default="false" name="ClosePriceServiceTest.testGetClosePricesWithNoMatchStartDateAndEndDate" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="assignment.service.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <module name="restapi_test" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="assignment.service" />
-      <option name="MAIN_CLASS_NAME" value="assignment.service.ClosePriceServiceTest" />
-      <option name="METHOD_NAME" value="testGetClosePricesWithNoMatchStartDateAndEndDate" />
-      <option name="TEST_OBJECT" value="method" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <envs />
-      <patterns />
-      <method />
-    </configuration>
-    <configuration default="false" name="ClosePriceServiceTest.testGetFirstStartDate" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="assignment.service.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <module name="restapi_test" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="assignment.service" />
-      <option name="MAIN_CLASS_NAME" value="assignment.service.ClosePriceServiceTest" />
-      <option name="METHOD_NAME" value="testGetFirstStartDate" />
-      <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
@@ -1337,19 +1522,19 @@
     </configuration>
     <list size="6">
       <item index="0" class="java.lang.String" itemvalue="Spring Boot.rest_api" />
-      <item index="1" class="java.lang.String" itemvalue="JUnit.ClosePriceServiceTest.testGetClosePrices" />
-      <item index="2" class="java.lang.String" itemvalue="JUnit.ClosePriceServiceTest" />
-      <item index="3" class="java.lang.String" itemvalue="JUnit.All in restapi_test" />
-      <item index="4" class="java.lang.String" itemvalue="JUnit.ClosePriceServiceTest.testGetClosePricesWithNoMatchStartDateAndEndDate" />
-      <item index="5" class="java.lang.String" itemvalue="JUnit.ClosePriceServiceTest.testGetFirstStartDate" />
+      <item index="1" class="java.lang.String" itemvalue="JUnit.DayMovingAverageControllerTest.testGetDayMovingAverageListWithTwoTicker" />
+      <item index="2" class="java.lang.String" itemvalue="JUnit.DayMovingAverageControllerTest.testGetDayMovingAverageListWithInvalidStartDate" />
+      <item index="3" class="java.lang.String" itemvalue="JUnit.DayMovingAverageControllerTest.testGetDayMovingAverageListWithInvalidTicker" />
+      <item index="4" class="java.lang.String" itemvalue="JUnit.DayMovingAverageControllerTest" />
+      <item index="5" class="java.lang.String" itemvalue="JUnit.All in restapi_test" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="JUnit.ClosePriceServiceTest.testGetFirstStartDate" />
-        <item index="1" class="java.lang.String" itemvalue="JUnit.ClosePriceServiceTest" />
-        <item index="2" class="java.lang.String" itemvalue="JUnit.ClosePriceServiceTest.testGetClosePricesWithNoMatchStartDateAndEndDate" />
-        <item index="3" class="java.lang.String" itemvalue="JUnit.ClosePriceServiceTest.testGetClosePrices" />
-        <item index="4" class="java.lang.String" itemvalue="JUnit.All in restapi_test" />
+        <item index="0" class="java.lang.String" itemvalue="JUnit.All in restapi_test" />
+        <item index="1" class="java.lang.String" itemvalue="JUnit.DayMovingAverageControllerTest" />
+        <item index="2" class="java.lang.String" itemvalue="JUnit.DayMovingAverageControllerTest.testGetDayMovingAverageListWithInvalidTicker" />
+        <item index="3" class="java.lang.String" itemvalue="JUnit.DayMovingAverageControllerTest.testGetDayMovingAverageListWithInvalidStartDate" />
+        <item index="4" class="java.lang.String" itemvalue="JUnit.DayMovingAverageControllerTest.testGetDayMovingAverageListWithTwoTicker" />
       </list>
     </recent_temporary>
   </component>
@@ -1368,44 +1553,45 @@
       <updated>1477964882619</updated>
       <workItem from="1477964884833" duration="28532000" />
       <workItem from="1478047656192" duration="26577000" />
-      <workItem from="1478135460266" duration="6835000" />
+      <workItem from="1478135460266" duration="7526000" />
+      <workItem from="1478156343999" duration="9752000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="ClosePriceServiceTest - 2016.11.03 at 09h 42m 44s.xml">
-      <configuration name="ClosePriceServiceTest" configurationId="JUnit" />
+    <history-entry file="All_in_restapi_test - 2016.11.03 at 16h 38m 27s.xml">
+      <configuration name="All in restapi_test" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ClosePriceServiceTest_testGetClosePrices - 2016.11.03 at 09h 33m 46s.xml">
-      <configuration name="ClosePriceServiceTest.testGetClosePrices" configurationId="JUnit" />
+    <history-entry file="DayMovingAverageControllerTest - 2016.11.03 at 16h 35m 42s.xml">
+      <configuration name="DayMovingAverageControllerTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ClosePriceServiceTest_testGetClosePrices - 2016.11.03 at 09h 34m 28s.xml">
-      <configuration name="ClosePriceServiceTest.testGetClosePrices" configurationId="JUnit" />
+    <history-entry file="DayMovingAverageControllerTest_testGetDayMovingAverageList - 2016.11.03 at 16h 07m 21s.xml">
+      <configuration name="DayMovingAverageControllerTest.testGetDayMovingAverageList" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ClosePriceServiceTest_testGetClosePricesWithNoMatchStartDateAndEndDate - 2016.11.03 at 09h 36m 19s.xml">
-      <configuration name="ClosePriceServiceTest.testGetClosePricesWithNoMatchStartDateAndEndDate" configurationId="JUnit" />
+    <history-entry file="DayMovingAverageControllerTest_testGetDayMovingAverageListWithInvalidStartDate - 2016.11.03 at 16h 26m 16s.xml">
+      <configuration name="DayMovingAverageControllerTest.testGetDayMovingAverageListWithInvalidStartDate" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ClosePriceServiceTest_testGetClosePricesWithNoMatchStartDateAndEndDate - 2016.11.03 at 09h 40m 28s.xml">
-      <configuration name="ClosePriceServiceTest.testGetClosePricesWithNoMatchStartDateAndEndDate" configurationId="JUnit" />
+    <history-entry file="DayMovingAverageControllerTest_testGetDayMovingAverageListWithInvalidStartDate - 2016.11.03 at 16h 28m 15s.xml">
+      <configuration name="DayMovingAverageControllerTest.testGetDayMovingAverageListWithInvalidStartDate" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ClosePriceServiceTest_testGetClosePricesWithNoMatchStartDateAndEndDate - 2016.11.03 at 09h 41m 36s.xml">
-      <configuration name="ClosePriceServiceTest.testGetClosePricesWithNoMatchStartDateAndEndDate" configurationId="JUnit" />
+    <history-entry file="DayMovingAverageControllerTest_testGetDayMovingAverageListWithInvalidTicker - 2016.11.03 at 16h 28m 27s.xml">
+      <configuration name="DayMovingAverageControllerTest.testGetDayMovingAverageListWithInvalidTicker" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ClosePriceServiceTest_testGetClosePricesWithNoMatchStartDateAndEndDate - 2016.11.03 at 09h 42m 36s.xml">
-      <configuration name="ClosePriceServiceTest.testGetClosePricesWithNoMatchStartDateAndEndDate" configurationId="JUnit" />
+    <history-entry file="DayMovingAverageControllerTest_testGetDayMovingAverageListWithInvalidTicker - 2016.11.03 at 16h 28m 46s.xml">
+      <configuration name="DayMovingAverageControllerTest.testGetDayMovingAverageListWithInvalidTicker" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ClosePriceServiceTest_testGetFirstStartDate - 2016.11.03 at 09h 48m 52s.xml">
-      <configuration name="ClosePriceServiceTest.testGetFirstStartDate" configurationId="JUnit" />
+    <history-entry file="DayMovingAverageControllerTest_testGetDayMovingAverageListWithTwoTicker - 2016.11.03 at 16h 09m 24s.xml">
+      <configuration name="DayMovingAverageControllerTest.testGetDayMovingAverageListWithTwoTicker" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ClosePriceServiceTest_testGetFirstStartDate - 2016.11.03 at 09h 50m 11s.xml">
-      <configuration name="ClosePriceServiceTest.testGetFirstStartDate" configurationId="JUnit" />
+    <history-entry file="DayMovingAverageControllerTest_testGetDayMovingAverageListWithTwoTicker - 2016.11.03 at 16h 10m 17s.xml">
+      <configuration name="DayMovingAverageControllerTest.testGetDayMovingAverageListWithTwoTicker" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ClosePriceServiceTest_testGetFirstStartDate - 2016.11.03 at 09h 51m 28s.xml">
-      <configuration name="ClosePriceServiceTest.testGetFirstStartDate" configurationId="JUnit" />
+    <history-entry file="DayMovingAverageControllerTest_testGetDayMovingAverageListWithTwoTicker - 2016.11.03 at 16h 15m 10s.xml">
+      <configuration name="DayMovingAverageControllerTest.testGetDayMovingAverageListWithTwoTicker" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="61944000" />
+    <option name="totallyTimeSpent" value="72387000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1417,7 +1603,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <frame x="-8" y="-8" width="1370" height="744" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1433,7 +1619,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.56301147" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24962178" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24961832" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="JProfiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1449,7 +1635,7 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24962178" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="WINDOWED" visible="false" show_stripe_button="true" weight="0.9183056" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" x="68" y="-1" width="1230" height="661" />
+      <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="WINDOWED" visible="false" show_stripe_button="true" weight="0.9183056" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" x="68" y="-1" width="1230" height="661" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
     </layout>
@@ -1509,7 +1695,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/assignment/service/ClosePriceServiceTest.java</url>
-          <line>177</line>
+          <line>179</line>
           <properties />
           <option name="timeStamp" value="18" />
         </line-breakpoint>
@@ -1521,7 +1707,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/assignment/service/ClosePriceServiceTest.java</url>
-          <line>228</line>
+          <line>230</line>
           <properties />
           <option name="timeStamp" value="23" />
         </line-breakpoint>
@@ -1531,8 +1717,14 @@
           <properties />
           <option name="timeStamp" value="26" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/assignment/controller/DayMovingAverageController.java</url>
+          <line>42</line>
+          <properties />
+          <option name="timeStamp" value="32" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="29" />
+      <option name="time" value="33" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1541,78 +1733,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/assignment/controller/DateClose.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="19" column="20" selection-start-line="19" selection-start-column="20" selection-end-line="19" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_92/src.zip!/java/time/LocalDate.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4743">
-          <caret line="381" column="37" selection-start-line="381" selection-start-column="15" selection-end-line="381" selection-end-column="37" />
-          <folding>
-            <element signature="e#0#92274#0" expanded="false" />
-            <element signature="imports" expanded="false" />
-            <element signature="e#7027#7028#0" expanded="false" />
-            <element signature="e#7080#7081#0" expanded="false" />
-            <element signature="e#7670#7671#0" expanded="false" />
-            <element signature="e#7716#7717#0" expanded="false" />
-            <element signature="e#20930#20931#0" expanded="false" />
-            <element signature="e#20993#20994#0" expanded="false" />
-            <element signature="e#22235#22236#0" expanded="false" />
-            <element signature="e#22297#22298#0" expanded="false" />
-            <element signature="e#29235#29236#0" expanded="false" />
-            <element signature="e#29282#29283#0" expanded="false" />
-            <element signature="e#29884#29885#0" expanded="false" />
-            <element signature="e#29929#29930#0" expanded="false" />
-            <element signature="e#30955#30956#0" expanded="false" />
-            <element signature="e#31008#31009#0" expanded="false" />
-            <element signature="e#31376#31377#0" expanded="false" />
-            <element signature="e#31403#31404#0" expanded="false" />
-            <element signature="e#31780#31781#0" expanded="false" />
-            <element signature="e#31808#31809#0" expanded="false" />
-            <element signature="e#32272#32273#0" expanded="false" />
-            <element signature="e#32310#32311#0" expanded="false" />
-            <element signature="e#32541#32542#0" expanded="false" />
-            <element signature="e#32567#32568#0" expanded="false" />
-            <element signature="e#32818#32819#0" expanded="false" />
-            <element signature="e#32890#32891#0" expanded="false" />
-            <element signature="e#34633#34634#0" expanded="false" />
-            <element signature="e#34695#34696#0" expanded="false" />
-            <element signature="e#35573#35574#0" expanded="false" />
-            <element signature="e#35622#35623#0" expanded="false" />
-            <element signature="e#59603#59604#0" expanded="false" />
-            <element signature="e#59669#59670#0" expanded="false" />
-            <element signature="e#70372#70373#0" expanded="false" />
-            <element signature="e#70437#70438#0" expanded="false" />
-            <element signature="e#73879#73880#0" expanded="false" />
-            <element signature="e#73949#73950#0" expanded="false" />
-            <element signature="e#77790#77791#0" expanded="false" />
-            <element signature="e#77841#77842#0" expanded="false" />
-            <element signature="e#78587#78588#0" expanded="false" />
-            <element signature="e#78644#78645#0" expanded="false" />
-            <element signature="e#79467#79468#0" expanded="false" />
-            <element signature="e#79532#79533#0" expanded="false" />
-            <element signature="e#81480#81481#0" expanded="false" />
-            <element signature="e#81545#81546#0" expanded="false" />
-            <element signature="e#91501#91502#0" expanded="false" />
-            <element signature="e#91558#91559#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/assignment/controller/ClosePriceResponse.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="34" column="26" selection-start-line="34" selection-start-column="26" selection-end-line="34" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/assignment/controller/serializer/PricesSerializerTest.java" />
     <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-test/4.3.3.RELEASE/155897ee1c39fb49a219446740cbdc38ac9fc23e/spring-test-4.3.3.RELEASE-sources.jar!/org/springframework/test/util/JsonExpectationsHelper.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="86">
@@ -1768,7 +1888,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="101">
           <caret line="212" column="0" selection-start-line="212" selection-start-column="0" selection-end-line="212" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1790,7 +1909,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="184">
           <caret line="36" column="0" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1878,59 +1996,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/assignment/controller/ClosePriceControllerTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1122">
-          <caret line="91" column="38" selection-start-line="91" selection-start-column="38" selection-end-line="91" selection-end-column="38" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-web/4.3.3.RELEASE/f963d559a56e848d01f973e4eb8c2428b6d8a6cd/spring-web-4.3.3.RELEASE-sources.jar!/org/springframework/web/client/RestTemplate.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="4029">
           <caret line="294" column="0" selection-start-line="294" selection-start-column="0" selection-end-line="294" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/assignment/model/DayMovingAverage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="447">
-          <caret line="38" column="16" selection-start-line="38" selection-start-column="13" selection-end-line="38" selection-end-column="16" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#869#870#0" expanded="true" />
-            <element signature="e#899#900#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/assignment/model/Prices.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="29" column="23" selection-start-line="29" selection-start-column="13" selection-end-line="29" selection-end-column="23" />
-          <folding>
-            <element signature="e#458#459#0" expanded="true" />
-            <element signature="e#491#492#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/assignment/datasource/DataSet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="24" column="37" selection-start-line="24" selection-start-column="37" selection-end-line="24" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/assignment/datasource/Error.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="26" selection-start-line="12" selection-start-column="26" selection-end-line="12" selection-end-column="26" />
           <folding />
         </state>
       </provider>
@@ -1943,30 +2012,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/assignment/controller/ClosePriceResponse.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="42" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/assignment/controller/DateClose.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="328">
-          <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="36" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/assignment/controller/DayMovingAverageResponse.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="10" column="42" selection-start-line="10" selection-start-column="42" selection-end-line="10" selection-end-column="42" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/assignment/controller/StringToLocalDateConverter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
@@ -1975,29 +2020,68 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/assignment/controller/BaseResponse.java">
+    <entry file="file://$PROJECT_DIR$/src/test/java/assignment/controller/ClosePriceControllerTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
-          <folding>
-            <element signature="e#455#456#0" expanded="true" />
-            <element signature="e#484#485#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/assignment/controller/serializer/PricesSerializer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+        <state relative-caret-position="467">
+          <caret line="120" column="92" selection-start-line="120" selection-start-column="92" selection-end-line="120" selection-end-column="92" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/assignment/service/ClosePriceService.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/assignment/datasource/Error.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="57" column="29" selection-start-line="57" selection-start-column="19" selection-end-line="57" selection-end-column="29" />
+        <state relative-caret-position="204">
+          <caret line="12" column="26" selection-start-line="12" selection-start-column="26" selection-end-line="12" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/assignment/datasource/DataSet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="24" column="37" selection-start-line="24" selection-start-column="37" selection-end-line="24" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/assignment/model/DayMovingAverage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="124">
+          <caret line="33" column="52" selection-start-line="33" selection-start-column="52" selection-end-line="33" selection-end-column="52" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/assignment/model/DateClose.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/assignment/model/DayMovingAverageList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="194">
+          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/assignment/model/Prices.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="12" column="54" selection-start-line="12" selection-start-column="45" selection-end-line="12" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/assignment/controller/DayMovingAverageControllerTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="549">
+          <caret line="55" column="39" selection-start-line="55" selection-start-column="26" selection-end-line="55" selection-end-column="39" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -2006,31 +2090,99 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/assignment/service/ClosePriceServiceTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="413">
-          <caret line="307" column="20" selection-start-line="307" selection-start-column="8" selection-end-line="307" selection-end-column="20" />
+        <state relative-caret-position="323">
+          <caret line="124" column="82" selection-start-line="124" selection-start-column="79" selection-end-line="124" selection-end-column="82" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#testGetClosePricesWithInvalidTicker#0;class#ClosePriceServiceTest#0" expanded="false" />
-            <element signature="method#testGet200DMAWithAvailableData#0;class#ClosePriceServiceTest#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/assignment/datasource/QuandlDataSource.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/assignment/controller/serializer/PricesSerializer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-170">
-          <caret line="100" column="76" selection-start-line="100" selection-start-column="76" selection-end-line="100" selection-end-column="76" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="238">
+          <caret line="23" column="64" selection-start-line="23" selection-start-column="48" selection-end-line="23" selection-end-column="64" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/assignment/controller/ClosePriceController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="212">
-          <caret line="57" column="13" selection-start-line="57" selection-start-column="13" selection-end-line="57" selection-end-column="13" />
+        <state relative-caret-position="102">
+          <caret line="36" column="50" selection-start-line="36" selection-start-column="49" selection-end-line="36" selection-end-column="50" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/assignment/controller/DayMovingAverageController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="48" column="79" selection-start-line="48" selection-start-column="75" selection-end-line="48" selection-end-column="88" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/assignment/controller/response/DayMovingAverageResponse.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/assignment/controller/response/DayMovingAverageListResponse.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="28" selection-start-line="12" selection-start-column="28" selection-end-line="12" selection-end-column="28" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/assignment/controller/response/ClosePriceResponse.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/assignment/controller/response/BaseResponse.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="26" column="51" selection-start-line="26" selection-start-column="51" selection-end-line="26" selection-end-column="51" />
+          <folding>
+            <element signature="e#525#526#0" expanded="true" />
+            <element signature="e#583#584#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/assignment/service/ClosePriceService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-777">
+          <caret line="4" column="45" selection-start-line="4" selection-start-column="45" selection-end-line="4" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/assignment/datasource/QuandlDataSource.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="243">
+          <caret line="100" column="50" selection-start-line="100" selection-start-column="50" selection-end-line="100" selection-end-column="50" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="class#InvalidTicker#0;class#QuandlDataSource#0" expanded="false" />
+            <element signature="method#QuandlDataSource#0;class#QuandlDataSource#0" expanded="false" />
+            <element signature="method#getClosePrices#0;class#QuandlDataSource#0" expanded="false" />
+            <element signature="method#getClosePrices#1;class#QuandlDataSource#0" expanded="false" />
+            <element signature="method#getClosePrices#2;class#QuandlDataSource#0" expanded="false" />
+            <element signature="method#checkErrors#0;class#QuandlDataSource#0" expanded="false" />
+            <element signature="method#convertToPrices#0;class#QuandlDataSource#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>

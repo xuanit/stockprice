@@ -1,7 +1,6 @@
-package assignment.controller;
+package assignment.controller.response;
 
 import assignment.model.DayMovingAverage;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 

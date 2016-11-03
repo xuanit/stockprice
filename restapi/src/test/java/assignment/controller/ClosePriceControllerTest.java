@@ -1,5 +1,6 @@
 package assignment.controller;
 
+import assignment.model.DateClose;
 import assignment.datasource.QuandlDataSource;
 import assignment.model.DayMovingAverage;
 import assignment.model.Prices;
