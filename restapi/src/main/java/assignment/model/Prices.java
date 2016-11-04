@@ -1,6 +1,8 @@
 package assignment.model;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -8,23 +10,20 @@ import java.util.List;
  */
 public class Prices {
 
-    private String ticker;
+    private final String ticker;
 
-    private List<DateClose> dateCloses = new ArrayList<>();
+    private final List<DateClose> dateCloses;
+
+    public Prices(String ticker, List<DateClose> dateCloses) {
+        this.ticker = ticker;
+        this.dateCloses = dateCloses;
+    }
 
     public String getTicker() {
         return ticker;
     }
 
-    public void setTicker(String ticker) {
-        this.ticker = ticker;
-    }
-
     public List<DateClose> getDateCloses() {
-        return dateCloses;
-    }
-
-    public void setDateCloses(List<DateClose> dateCloses) {
-        this.dateCloses = dateCloses;
+        return Collections.unmodifiableList(this.dateCloses);
     }
 }

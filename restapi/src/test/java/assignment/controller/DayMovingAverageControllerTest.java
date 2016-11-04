@@ -1,8 +1,10 @@
 package assignment.controller;
 
+import assignment.datasource.QuandlDataSource;
 import assignment.model.DayMovingAverage;
 import assignment.model.DayMovingAverageList;
 import assignment.service.ClosePriceService;
+import org.hamcrest.Matchers;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import static org.mockito.Mockito.*;
@@ -65,5 +67,52 @@ public class DayMovingAverageControllerTest {
     public void testGetDayMovingAverageListWithInvalidStartDate() throws Exception {
         mockMvc.perform(get("/api/v2/200dma?startDate=2016-10-34&ticker=FB,MSFT"))
                 .andExpect(status().isNotFound());
+    }
+
+    @Test
+    public void testGet200DMANormally() throws Exception {
+        LocalDate startDate = LocalDate.of(2016, Month.OCTOBER, 31);
+        String ticker = "FB";
+        BigDecimal avg = BigDecimal.valueOf(99).divide(BigDecimal.TEN);
+        DayMovingAverage dayMovingAverage = new DayMovingAverage(ticker, avg);
+        dayMovingAverage.setStartDate(startDate);
+        when(this.service.get200DMA(ticker, startDate))
+                .thenReturn(dayMovingAverage);
+        this.mockMvc.perform(get("/api/v2/FB/200dma?startDate=2016-10-31"))
+                .andExpect(status().isOk())
+                .andExpect(content().string("{" +
+                        "\"200dma\":{" +
+                        "\"Ticker\":\"FB\"," +
+                        "\"Avg\":\"9.9\"" +
+                        "}" +
+                        "}"));
+    }
+
+    @Test
+    public void testGet200DMAInvalidStartDate() throws Exception {
+        this.mockMvc.perform(get("/api/v2/FB/200dma?startDate=2016-10-33"))
+                .andExpect(status().isNotFound());
+    }
+
+    @Test
+    public void testGet200DMAInvalidTicker() throws Exception {
+        LocalDate startDate = LocalDate.of(2016, Month.OCTOBER, 31);
+        when(this.service.get200DMA("INVALID", startDate))
+                .thenThrow(new QuandlDataSource.InvalidTicker());
+        this.mockMvc.perform(get("/api/v2/INVALID/200dma?startDate=2016-10-31"))
+                .andExpect(status().isNotFound());
+    }
+
+    @Test
+    public void testGet200DMAHavingSuggestedStartDateInErrorMessage() throws Exception {
+        LocalDate startDate = LocalDate.of(2016, Month.OCTOBER, 31);
+        LocalDate firstStartDate = LocalDate.of(2016, Month.OCTOBER, 30);
+        when(this.service.get200DMA("FB", startDate))
+                .thenReturn(null);
+        when((this.service.getFirstStartDateHaving200DMA("FB")))
+                .thenReturn(firstStartDate);
+        this.mockMvc.perform(get("/api/v2/FB/200dma?startDate=2016-10-31"))
+                .andExpect(status().isNotFound())
+                .andExpect(content().string(Matchers.containsString(firstStartDate.toString())));
     }
 }

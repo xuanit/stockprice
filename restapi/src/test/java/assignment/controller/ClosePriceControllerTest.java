@@ -20,6 +20,8 @@ import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.time.Month;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -30,8 +32,8 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
  * Created by xuan on 11/1/2016.
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest
-@AutoConfigureMockMvc
+@SpringBootTest(properties = "spring.cache.type=none")
+@AutoConfigureMockMvc()
 public class ClosePriceControllerTest {
 
     @Autowired
@@ -44,12 +46,12 @@ public class ClosePriceControllerTest {
     public void getGetClosePricesShouldReturn200() throws Exception {
         LocalDate startDate = LocalDate.of(2016, Month.OCTOBER, 31);
         LocalDate endDate = LocalDate.of(2016, Month.NOVEMBER, 1);
-        Prices prices = new Prices();
-        prices.setTicker("FB");
         DecimalFormat bigDecimalFortmat = new DecimalFormat();
         bigDecimalFortmat.setParseBigDecimal(true);
-        prices.getDateCloses().add(new DateClose(LocalDate.of(2016, Month.OCTOBER, 31), (BigDecimal)bigDecimalFortmat.parse("9.99")));
-        prices.getDateCloses().add(new DateClose(LocalDate.of(2016, Month.NOVEMBER, 01), (BigDecimal)bigDecimalFortmat.parse("1.00")));
+        List<DateClose> dateCloses = new ArrayList<>();
+        dateCloses.add(new DateClose(LocalDate.of(2016, Month.OCTOBER, 31), (BigDecimal)bigDecimalFortmat.parse("9.99")));
+        dateCloses.add(new DateClose(LocalDate.of(2016, Month.NOVEMBER, 01), (BigDecimal)bigDecimalFortmat.parse("1.00")));
+        Prices prices = new Prices("FB", dateCloses);
         when(service.getClosePrices("FB", startDate, endDate)).thenReturn(prices);
         this.mockMvc.perform(get("/api/v2/FB/closePrice?startDate=2016-10-31&endDate=2016-11-01"))
                 .andExpect(status().isOk())
@@ -73,51 +75,5 @@ public class ClosePriceControllerTest {
         when(service.getClosePrices("INVALIDTICKER", startDate, endDate)).thenThrow(QuandlDataSource.InvalidTicker.class);
         this.mockMvc.perform(get("/api/v2/INVALIDTICKER/closePrice?startDate=2016-10-31&endDate=2016-11-01"))
                 .andExpect(status().isNotFound());
-    }
-
-    @Test
-    public void testGet200DMA() throws Exception {
-        LocalDate startDate = LocalDate.of(2016, Month.OCTOBER, 31);
-        String ticker = "FB";
-        BigDecimal avg = BigDecimal.valueOf(99).divide(BigDecimal.TEN);
-        DayMovingAverage dayMovingAverage = new DayMovingAverage(ticker, avg);
-        when(this.service.get200DMA(ticker, startDate))
-                .thenReturn(dayMovingAverage);
-        this.mockMvc.perform(get("/api/v2/FB/200dma?startDate=2016-10-31"))
-                .andExpect(status().isOk())
-                .andExpect(content().string("{" +
-                        "\"200dma\":{" +
-                        "\"Ticker\":\"FB\"," +
-                        "\"Avg\":\"9.9\"" +
-                        "}" +
-                        "}"));
-    }
-
-    @Test
-    public void testGet200DMAInvalidStartDate() throws Exception {
-        this.mockMvc.perform(get("/api/v2/FB/200dma?startDate=2016-10-33"))
-                .andExpect(status().isNotFound());
-    }
-
-    @Test
-    public void testGet200DMAInvalidTicker() throws Exception {
-        LocalDate startDate = LocalDate.of(2016, Month.OCTOBER, 31);
-        when(this.service.get200DMA("INVALID", startDate))
-                .thenThrow(new QuandlDataSource.InvalidTicker());
-        this.mockMvc.perform(get("/api/v2/INVALID/200dma?startDate=2016-10-31"))
-                .andExpect(status().isNotFound());
-    }
-
-    @Test
-    public void testGet200DMAHavingSuggestedStartDateInErrorMessage() throws Exception {
-        LocalDate startDate = LocalDate.of(2016, Month.OCTOBER, 31);
-        LocalDate firstStartDate = LocalDate.of(2016, Month.OCTOBER, 30);
-        when(this.service.get200DMA("FB", startDate))
-                .thenReturn(null);
-        when((this.service.getFirstStartDateHaving200DMA("FB")))
-                .thenReturn(firstStartDate);
-        this.mockMvc.perform(get("/api/v2/FB/200dma?startDate=2016-10-31"))
-                .andExpect(status().isNotFound())
-                .andExpect(content().string(Matchers.containsString(firstStartDate.toString())));
     }
 }

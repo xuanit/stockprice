@@ -6,6 +6,8 @@ import assignment.datasource.QuandlDataSource;
 import assignment.model.DayMovingAverage;
 import assignment.model.Prices;
 import assignment.service.ClosePriceService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
@@ -20,6 +22,8 @@ import java.time.LocalDate;
 @RestController
 @RequestMapping("api/v2/{tickersymbol}/")
 public class ClosePriceController {
+
+    private static final Logger logger = LoggerFactory.getLogger(ClosePriceController.class);
 
     @Autowired
     private ClosePriceService closePriceService;
@@ -37,6 +41,8 @@ public class ClosePriceController {
     @RequestMapping(value = "closePrice", method = RequestMethod.GET)
     public HttpEntity<ClosePriceResponse> getClosePrices(@PathVariable("tickersymbol") String ticker,
                                                          @RequestParam("startDate") String startDateParam, @RequestParam("endDate") String endDateParam ){
+
+        logger.debug("Print it");
         ClosePriceResponse response = new ClosePriceResponse();
         LocalDate startDate = stringToLocalDateConverter.convert(startDateParam, "startDate", response);
         LocalDate endDate = stringToLocalDateConverter.convert(endDateParam, "endDate", response);
@@ -55,33 +61,6 @@ public class ClosePriceController {
         }
         response.setPrices(prices);
         return  new ResponseEntity<ClosePriceResponse>(response, HttpStatus.OK);
-    }
-
-    @RequestMapping(value = "200dma", method = RequestMethod.GET)
-    public HttpEntity<DayMovingAverageResponse> get200DMA(@PathVariable("tickersymbol")String ticker, @RequestParam("startDate") String startDateParam){
-        DayMovingAverageResponse response = new DayMovingAverageResponse();
-        LocalDate startDate = stringToLocalDateConverter.convert(startDateParam, "startDate", response);
-        if(response.getErrors() != null) {
-            return new ResponseEntity<DayMovingAverageResponse>(response, HttpStatus.NOT_FOUND);
-        }
-        DayMovingAverage dayMovingAverage = null;
-        try {
-            dayMovingAverage = this.closePriceService.get200DMA(ticker, startDate);
-            if(dayMovingAverage == null){
-                LocalDate firstStartDateHaving200DMA = this.closePriceService.getFirstStartDateHaving200DMA(ticker);
-                response.addError("There is not enough data for 200 day moving average calculation. The first start date having enough data is " + firstStartDateHaving200DMA.toString());
-            }else {
-                response.setDayMovingAverage(dayMovingAverage);
-            }
-        } catch (QuandlDataSource.InvalidTicker invalidTicker) {
-            response.addError(INVALID_TICKER_ERROR);
-            return new ResponseEntity<DayMovingAverageResponse>(response, HttpStatus.NOT_FOUND);
-        }
-        if(response.getErrors() != null) {
-            return new ResponseEntity<DayMovingAverageResponse>(response, HttpStatus.NOT_FOUND);
-        }else {
-            return new ResponseEntity<DayMovingAverageResponse>(response, HttpStatus.OK);
-        }
     }
 
 

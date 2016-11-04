@@ -38,6 +38,15 @@ public class ClosePriceService {
         if(prices == null || prices.getDateCloses() == null || prices.getDateCloses().size() < 200) {
             return null;
         }
+        DayMovingAverage dayMovingAverage = calculateDayMovingAverage(prices);
+        dayMovingAverage.setStartDate(startDate);
+        return dayMovingAverage;
+    }
+
+    private DayMovingAverage calculateDayMovingAverage(Prices prices) {
+        assert prices!= null;
+        assert prices.getDateCloses() != null && prices.getDateCloses().size() == 200;
+
         BigDecimal sumOfPrices = BigDecimal.ZERO;
         for(int index = 0; index <  200; ++index){
             DateClose dateClose = prices.getDateCloses().get(index);
@@ -57,23 +66,32 @@ public class ClosePriceService {
         return  null;
     }
 
+    private DayMovingAverage getLatest200dma(String ticker) throws QuandlDataSource.InvalidTicker {
+        Prices prices = quandlDataSource.getClosePrices(ticker, 200);
+        if(prices == null ||  prices.getDateCloses() == null || prices.getDateCloses().size() != 200) {
+            return null;
+        }
+        DayMovingAverage dma = calculateDayMovingAverage(prices);
+        dma.setStartDate(prices.getDateCloses().get(0).getDate());
+        return dma;
+    }
+
     public DayMovingAverageList get200DMAList(List<String> tickerSymbols, LocalDate startDate) {
         DayMovingAverageList dmaList = new DayMovingAverageList(startDate);
         for(String tickerSymbol: tickerSymbols) {
             if("".equals(tickerSymbol)) {
                 continue;
             }
-            LocalDate tickerStartDate = startDate;
+
             DayMovingAverage dma = null;
             try {
                 dma = this.get200DMA(tickerSymbol, startDate);
                 if(dma == null){
-                    tickerStartDate = this.getFirstStartDateHaving200DMA(tickerSymbol);
-                    dma = this.get200DMA(tickerSymbol, tickerStartDate);
-
+                    dma = this.getLatest200dma(tickerSymbol);
                 }
-                if(dma != null) {
-                    dma.setStartDate(tickerStartDate);
+                if(dma == null) {
+                    dma = new DayMovingAverage(tickerSymbol, null);
+                    dma.setErrorMessage("There is not enough data for 200 day moving average calculation");
                 }
             } catch (QuandlDataSource.InvalidTicker invalidTicker) {
                 dma = new DayMovingAverage(tickerSymbol, null);

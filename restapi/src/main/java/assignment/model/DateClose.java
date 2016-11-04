@@ -11,6 +11,11 @@ import java.time.LocalDate;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class DateClose implements Comparable<DateClose> {
 
+
+    private final LocalDate date;
+
+    private final BigDecimal price;
+
     public DateClose(LocalDate date, BigDecimal price){
         this.date = date;
         this.price = price;
@@ -24,15 +29,11 @@ public class DateClose implements Comparable<DateClose> {
         return price;
     }
 
-    private LocalDate date;
-
-    private BigDecimal price;
-
     @Override
     public int compareTo(DateClose dateClose) {
-        if(dateClose == null && this.date == null && dateClose.date == null) {
+        if(dateClose == null && date == null && dateClose.date == null) {
             throw new NullPointerException("provided close date is null");
         }
-        return this.date.compareTo(dateClose.date);
+        return date.compareTo(dateClose.date);
     }
 }

@@ -40,31 +40,14 @@ public class QuandlDataSource {
     public static final int DATE_COLUMN = 0;
     public static final String ORDER_ASC = "asc";
 
-    @Autowired
-    private RestTemplate restTemplate;
+    private DataHolder dataHolder;
 
-    public QuandlDataSource(RestTemplate restTemplate) {
-        restTemplate.setErrorHandler(new ResponseErrorHandler() {
-            DefaultResponseErrorHandler defaultHandler = new DefaultResponseErrorHandler();
-            @Override
-            public boolean hasError(ClientHttpResponse response) throws IOException {
-                if(response.getStatusCode() == HttpStatus.NOT_FOUND){
-                    return  false;
-                }
-                return defaultHandler.hasError(response);
-            }
-
-            @Override
-            public void handleError(ClientHttpResponse response) throws IOException {
-                defaultHandler.handleError(response);
-            }
-        });
-        this.restTemplate = restTemplate;
+    public QuandlDataSource(DataHolder dataHolder) {
+        this.dataHolder = dataHolder;
     }
-    private static  final String API_URL = "https://www.quandl.com/api/v3/datasets/WIKI/";
 
     public Prices getClosePrices(String ticker, LocalDate startDate, LocalDate endDate) throws InvalidTicker {
-        Prices prices = this.getDataSet(ticker);
+        Prices prices = this.dataHolder.getDataSet(ticker);
         List<DateClose> dateCloses = prices.getDateCloses();
         DateClose dummyStartDateClose = new DateClose(startDate, BigDecimal.ZERO);
         DateClose dummyEndDateClose = new DateClose(endDate, BigDecimal.ZERO);
@@ -72,74 +55,27 @@ public class QuandlDataSource {
         startCloseDateIndex = startCloseDateIndex >=0? startCloseDateIndex: Math.abs(startCloseDateIndex + 1);
         int endCloseDateIndex = Math.abs(Collections.binarySearch(dateCloses, dummyEndDateClose) + 1);
         List<DateClose> filteredDateCloses = dateCloses.subList(startCloseDateIndex, endCloseDateIndex);
-        prices.setDateCloses(filteredDateCloses);
-        return prices;
+        return new Prices(prices.getTicker(), filteredDateCloses);
     }
 
     public Prices getClosePrices(String ticker, LocalDate startDate, int limit) throws InvalidTicker {
-        Prices prices = this.getDataSet(ticker);
+        if(startDate == null) throw new NullPointerException("startDate is null");
+        if(ticker == null) throw new NullPointerException("ticker is null");
+
+        Prices prices = this.dataHolder.getDataSet(ticker);
         List<DateClose> dateCloses = prices.getDateCloses();
         DateClose startDateClose = new DateClose(startDate, BigDecimal.ZERO);
         int startCloseDateIndex = Math.abs(Collections.binarySearch(dateCloses, startDateClose));
         int endIndex = startCloseDateIndex + limit < dateCloses.size()? startCloseDateIndex + limit: dateCloses.size();
-        prices.setDateCloses(dateCloses.subList(startCloseDateIndex, endIndex));
-        return prices;
+        List<DateClose> filteredDateCloses = dateCloses.subList(startCloseDateIndex, endIndex);
+        return new Prices(prices.getTicker(), filteredDateCloses);
     }
 
     public Prices getClosePrices(String ticker, int limit) throws InvalidTicker {
-        Prices prices = this.getDataSet(ticker);
+        Prices prices = this.dataHolder.getDataSet(ticker);
         List<DateClose> dateCloses = prices.getDateCloses();
         int startIndex = dateCloses.size() > limit? dateCloses.size() - limit: 0;
-        prices.setDateCloses(dateCloses.subList(startIndex, dateCloses.size()));
-        return prices;
-    }
-
-    private Prices getDataSet(String dataSetName) throws InvalidTicker {
-        StringBuilder urlBuilder = new StringBuilder();
-        urlBuilder.append(API_URL).append("{dataSet}.json?");
-        Map<String, Object> params = new LinkedHashMap<>();
-        //params.put("api_key", "N1us7CxC5N1tiCVFTdsk");//for testing at local
-        params.put(QuandlDataSource.COLUMN_INDEX, QuandlDataSource.CLOSE_COLUMN);
-        params.put(ORDER, ORDER_ASC);
-        for(String param : params.keySet()) {
-            urlBuilder.append(param).append("={").append(param).append("}&");
-        }
-        params.put("dataSet", dataSetName);
-        Response response = this.restTemplate.getForObject(urlBuilder.toString(), Response.class, params);
-        checkErrors(response);
-        Prices prices = convertToPrices(response);
-        return prices;
-    }
-
-    private void checkErrors(Response response) throws InvalidTicker {
-        if(response.getError() != null) {
-            if("QECx02".equals(response.getError().getCode())) {
-                throw new InvalidTicker();
-            }
-            throw new UnknownError(response.getError().getMessage());
-        }
-    }
-
-    private Prices convertToPrices(Response response) {
-        if(response.getDataset() == null) {
-            return  null;
-        }
-        DataSet dataSet = response.getDataset();
-        Prices prices = new Prices();
-        prices.setTicker(dataSet.getDataSetCode());
-        DecimalFormat bigDecimalFormat = new DecimalFormat();
-        bigDecimalFormat.setParseBigDecimal(true);
-        for(List<String> closeDateData : dataSet.getData()) {
-            LocalDate closeDate = LocalDate.parse(closeDateData.get(0));
-            BigDecimal closePrice  = null;
-            try {
-                closePrice =(BigDecimal)bigDecimalFormat.parse(closeDateData.get(1));
-            } catch (ParseException e) {
-                logger.error("Error while parsing close date", e);
-                continue;
-            }
-            prices.getDateCloses().add(new DateClose(closeDate, closePrice));
-        }
-        return prices;
+        List<DateClose> filteredDateClose = dateCloses.subList(startIndex, dateCloses.size());
+        return new Prices(prices.getTicker(), filteredDateClose);
     }
 }
