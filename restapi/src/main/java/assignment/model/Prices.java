@@ -12,6 +12,8 @@ public class Prices {
 
     private final String ticker;
 
+    private String etag;
+
     private final List<DateClose> dateCloses;
 
     public Prices(String ticker, List<DateClose> dateCloses) {
@@ -25,5 +27,13 @@ public class Prices {
 
     public List<DateClose> getDateCloses() {
         return Collections.unmodifiableList(this.dateCloses);
+    }
+
+    public String getEtag() {
+        return etag;
+    }
+
+    public void setEtag(String etag) {
+        this.etag = etag;
     }
 }

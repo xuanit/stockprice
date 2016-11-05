@@ -10,6 +10,7 @@ import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.web.client.RestTemplate;
 
 /**
@@ -17,6 +18,7 @@ import org.springframework.web.client.RestTemplate;
  */
 @SpringBootApplication
 @EnableCaching(proxyTargetClass = true)
+@EnableScheduling
 public class Application {
 
     public static void main( String[] args){

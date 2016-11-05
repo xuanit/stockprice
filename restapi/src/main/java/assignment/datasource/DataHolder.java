@@ -5,8 +5,9 @@ import assignment.model.Prices;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
-import org.springframework.http.HttpStatus;
+import org.springframework.http.*;
 import org.springframework.http.client.ClientHttpResponse;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.DefaultResponseErrorHandler;
@@ -61,6 +62,10 @@ public class DataHolder {
 
     @Cacheable("closedates")
     public Prices getDataSet(String dataSetName) throws QuandlDataSource.InvalidTicker {
+        return callAPI(dataSetName, null);
+    }
+
+    private Prices callAPI(String dataSetName, String etag) throws QuandlDataSource.InvalidTicker {
         StringBuilder urlBuilder = new StringBuilder();
         urlBuilder.append(API_URL).append("{dataSet}.json?");
         Map<String, Object> params = new LinkedHashMap<>();
@@ -71,12 +76,28 @@ public class DataHolder {
             urlBuilder.append(param).append("={").append(param).append("}&");
         }
         params.put("dataSet", dataSetName);
-        Response response = this.restTemplate.getForObject(urlBuilder.toString(), Response.class, params);
+        HttpHeaders headers = new HttpHeaders();
+        if(etag != null){
+            headers.setIfNoneMatch(etag);
+        }
+        HttpEntity requestEntity = new HttpEntity(null, headers);
+        ResponseEntity<Response> responseEntity = this.restTemplate.exchange(urlBuilder.toString(), HttpMethod.GET,requestEntity,
+                Response.class, params);
+        if(responseEntity.getStatusCode() == HttpStatus.NOT_MODIFIED) {
+            return null;
+        }
+        //Response response = this.restTemplate.getForObject(urlBuilder.toString(), Response.class, params);
+        Response response = responseEntity.getBody();
         checkErrors(response);
         Prices prices = convertToPrices(response);
+        prices.setEtag(responseEntity.getHeaders().getETag());
         return prices;
     }
 
+    @CachePut(cacheNames = "closedates", key="#dataSet", unless = "#result==null")
+    public Prices refreshDateSet(String dataSet, String etag) throws QuandlDataSource.InvalidTicker {
+        return this.callAPI(dataSet, etag);
+    }
     private void checkErrors(Response response) throws QuandlDataSource.InvalidTicker {
         if(response.getError() != null) {
             if("QECx02".equals(response.getError().getCode())) {

@@ -46,7 +46,7 @@ public class DataHolderTest {
     @Test
     public void testGetDataSetNormally() throws QuandlDataSource.InvalidTicker {
         HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.add(HttpHeaders.ETAG, "W/\"620779fe7c51b507e53324df535dcf96\"");
+        httpHeaders.setETag("W/\"620779fe7c51b507e53324df535dcf96\"");
         this.server.expect(manyTimes(), requestTo("https://www.quandl.com/api/v3/datasets/WIKI/FB.json?column_index=4&order=asc"))
                 .andExpect(method(HttpMethod.GET))
                 .andRespond(withSuccess("{" +
@@ -79,6 +79,7 @@ public class DataHolderTest {
 
         this.server.verify();
         assertEquals("FB", prices.getTicker());
+        assertEquals("W/\"620779fe7c51b507e53324df535dcf96\"", prices.getEtag());
         assertEquals(2, prices.getDateCloses().size());
         DateClose firstDateClose = prices.getDateCloses().get(0);
         assertEquals(LocalDate.of(2016, Month.OCTOBER, 30), firstDateClose.getDate());
@@ -102,5 +103,64 @@ public class DataHolderTest {
                                 "}"));
 
         this.dataHolder.getDataSet("INVALID");
+    }
+
+    @Test
+    public void testRefreshDataSetNonMatchEtag() throws QuandlDataSource.InvalidTicker {
+        HttpHeaders httpResponseHeaders = new HttpHeaders();
+        httpResponseHeaders.setETag("W/\"620779fe7c51b507e53324df535dcf97\"");
+        String eTag = "W/\"620779fe7c51b507e53324df535dcf96\"";
+        this.server.expect(manyTimes(), request -> {
+                    assertEquals("Request URI", "https://www.quandl.com/api/v3/datasets/WIKI/FB.json?column_index=4&order=asc", request.getURI().toString());
+                     assertEquals("Etag", eTag, request.getHeaders().getIfNoneMatch().get(0));
+                 })
+                .andRespond(withSuccess("{" +
+                        "\"dataset\" : {" +
+                        "\"id\" : 9775687," +
+                        "\"dataset_code\" : \"FB\"," +
+                        "\"database_code\" : \"WIKI\"," +
+                        "\"name\" : \"Facebook Inc. (FB) Prices, Dividends, Splits and Trading Volume\"," +
+                        "\"description\" : \"description\"," +
+                        "\"refreshed_at\" : \"2016-10-31T21:47:31.671Z\"," +
+                        "\"newest_available_date\" : \"2016-10-31\"," +
+                        "\"oldest_available_date\" : \"2012-05-18\"," +
+                        "\"column_names\" : [\"Date\", \"Close\"]," +
+                        "\"frequency\" : \"daily\"," +
+                        "\"type\" : \"Time Series\"," +
+                        "\"premium\" : false," +
+                        "\"limit\" : null," +
+                        "\"transform\" : null," +
+                        "\"column_index\" : 4," +
+                        "\"start_date\" : \"2016-10-31\"," +
+                        "\"end_date\" : \"2016-11-01\"," +
+                        "\"data\" : [[\"2016-10-30\", 129.99],[\"2016-10-31\", 130.99]]," +
+                        "\"collapse\" : null," +
+                        "\"order\" : null," +
+                        "\"database_id\" : 4922" +
+                        "}" +
+                        "}", MediaType.APPLICATION_JSON).headers(httpResponseHeaders));
+
+        Prices prices = this.dataHolder.refreshDateSet("FB", eTag);
+
+        this.server.verify();
+        assertEquals("FB", prices.getTicker());
+        assertEquals(2, prices.getDateCloses().size());
+        assertEquals(httpResponseHeaders.getETag(), prices.getEtag());
+    }
+
+    @Test
+    public void testRefreshDataSetMatchEtag() throws QuandlDataSource.InvalidTicker {
+        final String etag = "W/\"620779fe7c51b507e53324df535dcf96\"";
+        this.server.expect(request -> {
+                        assertEquals("Etag", etag, request.getHeaders().getIfNoneMatch().get(0));
+                        assertEquals("Request URI", "https://www.quandl.com/api/v3/datasets/WIKI/FB.json?column_index=4&order=asc", request.getURI().toString());
+                    })
+                .andRespond(withStatus(HttpStatus.NOT_MODIFIED));
+
+        Prices prices = this.dataHolder.refreshDateSet("FB", etag);
+
+        this.server.verify();
+        assertNull(prices);
+
     }
 }
