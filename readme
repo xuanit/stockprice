@@ -1,0 +1,26 @@
+How to Run: 
++ Run the command: java -jar stockPriceService.jar
+
+Document for story #3
+	REST API supports GET, URI: /api/v2/200dma?startDate=YYYY-MM-DD&ticker={tickerSymbol},{tickerSymbol}. For example: /api/v2/200dma?startDate=2016-11-25&ticker=FB,MSFT
+	Json is returned in the following format:
+		{
+		 200dmas:
+			{
+				"StartDate": "YYYY-MM-DD",
+				"Data":
+					[
+						{
+							"Ticker": "FB",
+							"Avg": "11.22",
+							"StartDate": "YYYY-MM-DD"
+						},
+						{
+							"Ticker": "MSFT",
+							"Error": "Invalid Ticker Symbol"
+						}
+					]
+			}
+		 }
+		}
+	Invalid startDate returns Http Status 404. Invalid ticker parameter format returns Http Status 404.
