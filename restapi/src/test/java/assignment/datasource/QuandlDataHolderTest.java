@@ -1,6 +1,8 @@
 package assignment.datasource;
 
+import assignment.datasource.quandl.QuandlDataHolder;
 import assignment.model.DateClose;
+import assignment.model.InvalidTickerException;
 import assignment.model.Prices;
 import static org.junit.Assert.*;
 import org.junit.Before;
@@ -17,6 +19,7 @@ import org.springframework.web.client.RestTemplate;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.Month;
+import java.util.Optional;
 
 import static org.springframework.test.web.client.ExpectedCount.manyTimes;
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.method;
@@ -28,23 +31,23 @@ import static org.springframework.test.web.client.response.MockRestResponseCreat
  * Created by xuan on 11/4/2016.
  */
 @RunWith(JUnit4.class)
-public class DataHolderTest {
+public class QuandlDataHolderTest {
 
     private RestTemplate restTemplate;
 
     private MockRestServiceServer server;
 
-    private DataHolder dataHolder;
+    private DataHolder quandlDataHolder;
 
     @Before
     public void init(){
         this.restTemplate = new RestTemplate();
         this.server = MockRestServiceServer.bindTo(restTemplate).build();
-        this.dataHolder = new DataHolder(restTemplate);
+        this.quandlDataHolder = new QuandlDataHolder(restTemplate);
     }
 
     @Test
-    public void testGetDataSetNormally() throws QuandlDataSource.InvalidTicker {
+    public void testGetDataSetNormally() throws InvalidTickerException {
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setETag("W/\"620779fe7c51b507e53324df535dcf96\"");
         this.server.expect(manyTimes(), requestTo("https://www.quandl.com/api/v3/datasets/WIKI/FB.json?column_index=4&order=asc"))
@@ -75,7 +78,7 @@ public class DataHolderTest {
                         "}" +
                         "}", MediaType.APPLICATION_JSON).headers(httpHeaders));
 
-        Prices prices = this.dataHolder.getDataSet("FB");
+        Prices prices = this.quandlDataHolder.getDataSet("FB");
 
         this.server.verify();
         assertEquals("FB", prices.getTicker());
@@ -89,8 +92,8 @@ public class DataHolderTest {
         assertEquals(BigDecimal.valueOf(13099).divide(BigDecimal.valueOf(100)), secondDateClose.getPrice());
     }
 
-    @Test(expected = QuandlDataSource.InvalidTicker.class)
-    public void testGetDateSetWithInvalidTicker() throws QuandlDataSource.InvalidTicker {
+    @Test(expected = InvalidTickerException.class)
+    public void testGetDateSetWithInvalidTicker() throws InvalidTickerException {
         this.server.expect(manyTimes(), requestTo("https://www.quandl.com/api/v3/datasets/WIKI/INVALID.json?column_index=4&order=asc"))
                 .andExpect(method(HttpMethod.GET))
                 .andRespond(withStatus(HttpStatus.NOT_FOUND)
@@ -102,11 +105,11 @@ public class DataHolderTest {
                                 "}" +
                                 "}"));
 
-        this.dataHolder.getDataSet("INVALID");
+        this.quandlDataHolder.getDataSet("INVALID");
     }
 
     @Test
-    public void testRefreshDataSetNonMatchEtag() throws QuandlDataSource.InvalidTicker {
+    public void testRefreshDataSetNonMatchEtag() throws InvalidTickerException {
         HttpHeaders httpResponseHeaders = new HttpHeaders();
         httpResponseHeaders.setETag("W/\"620779fe7c51b507e53324df535dcf97\"");
         String eTag = "W/\"620779fe7c51b507e53324df535dcf96\"";
@@ -140,7 +143,7 @@ public class DataHolderTest {
                         "}" +
                         "}", MediaType.APPLICATION_JSON).headers(httpResponseHeaders));
 
-        Prices prices = this.dataHolder.refreshDateSet("FB", eTag);
+        Prices prices = this.quandlDataHolder.refreshDateSet("FB", eTag).get();
 
         this.server.verify();
         assertEquals("FB", prices.getTicker());
@@ -149,7 +152,7 @@ public class DataHolderTest {
     }
 
     @Test
-    public void testRefreshDataSetMatchEtag() throws QuandlDataSource.InvalidTicker {
+    public void testRefreshDataSetMatchEtag() throws InvalidTickerException {
         final String etag = "W/\"620779fe7c51b507e53324df535dcf96\"";
         this.server.expect(request -> {
                         assertEquals("Etag", etag, request.getHeaders().getIfNoneMatch().get(0));
@@ -157,10 +160,10 @@ public class DataHolderTest {
                     })
                 .andRespond(withStatus(HttpStatus.NOT_MODIFIED));
 
-        Prices prices = this.dataHolder.refreshDateSet("FB", etag);
+        Optional<Prices> optPrices = this.quandlDataHolder.refreshDateSet("FB", etag);
 
         this.server.verify();
-        assertNull(prices);
+        assertFalse(optPrices.isPresent());
 
     }
 }

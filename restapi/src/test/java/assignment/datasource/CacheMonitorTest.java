@@ -1,5 +1,6 @@
 package assignment.datasource;
 
+import assignment.model.InvalidTickerException;
 import assignment.model.Prices;
 import net.sf.ehcache.Ehcache;
 import org.junit.Before;
@@ -42,20 +43,18 @@ public class CacheMonitorTest {
     }
 
     @Test
-    public void testRunNormally() throws QuandlDataSource.InvalidTicker {
+    public void testRunNormally() throws InvalidTickerException {
         when(ehcache.getKeys()).thenReturn(Arrays.asList("FB"));
-        Prices prices = new Prices("FB", null);
-        prices.setEtag("etag");
+        Prices prices = new Prices("FB", null, "etag");
         when(cache.get("FB", Prices.class)).thenReturn(prices);
         this.cacheMonitor.run();
         verify(dataHolder, times(1)).refreshDateSet("FB", "etag");
     }
 
     @Test
-    public void testRunExceptionCaught() throws QuandlDataSource.InvalidTicker {
+    public void testRunExceptionCaught() throws InvalidTickerException {
         when(ehcache.getKeys()).thenReturn(Arrays.asList("FB"));
-        Prices prices = new Prices("FB", null);
-        prices.setEtag("etag");
+        Prices prices = new Prices("FB", null, "etag");
         when(cache.get("FB", Prices.class)).thenReturn(prices);
         when(dataHolder.refreshDateSet(any(), any())).thenThrow(Exception.class);
 

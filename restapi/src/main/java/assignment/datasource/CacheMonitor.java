@@ -10,6 +10,8 @@ import org.springframework.cache.CacheManager;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.List;
 
 /**
@@ -36,6 +38,11 @@ public class CacheMonitor {
     @Scheduled(fixedDelay =1 * 60 * 1000 )
     public void run(){
         try{
+            LocalDateTime startDate = LocalDateTime.now();
+            if(logger.isDebugEnabled()){
+                logger.debug("cache monitor started." + startDate.toString());
+            }
+
             Cache cache = cacheManager.getCache(CACHE_NAME);
             Ehcache ehcache = (Ehcache)cache.getNativeCache();
             List<String> keys  = ehcache.getKeys();
@@ -44,6 +51,15 @@ public class CacheMonitor {
                 if(prices != null){
                     dataHolder.refreshDateSet(key, prices.getEtag());
                 }
+            }
+
+            if(logger.isDebugEnabled()) {
+                LocalDateTime endDate = LocalDateTime.now();
+                ZoneId zoneId = ZoneId.systemDefault(); // or: ZoneId.of("Europe/Oslo");
+                long startMilliSeconds = startDate.atZone(zoneId).toInstant().toEpochMilli();
+                long endMilliSeconds  = endDate.atZone(zoneId).toInstant().toEpochMilli();
+                long duration = endMilliSeconds - startMilliSeconds;
+                logger.debug("Cache monitor ran in (milliseconds) " + duration + " for " + keys.size() + " entities");
             }
         }catch (Exception ex){
            logger.error("Error while refreshing cache.", ex);

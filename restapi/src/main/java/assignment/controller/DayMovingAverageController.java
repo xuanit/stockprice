@@ -2,10 +2,12 @@ package assignment.controller;
 
 import assignment.controller.response.DayMovingAverageListResponse;
 import assignment.controller.response.DayMovingAverageResponse;
-import assignment.datasource.QuandlDataSource;
+import assignment.datasource.DefaultDataSource;
 import assignment.model.DayMovingAverage;
 import assignment.model.DayMovingAverageList;
+import assignment.model.InvalidTickerException;
 import assignment.service.ClosePriceService;
+import assignment.service.DayMovingAverageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
@@ -13,10 +15,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.Optional;
 
 /**
  * Created by xuan on 11/3/2016.
@@ -31,24 +31,24 @@ public class DayMovingAverageController {
     private static final String INVALID_TICKER_ERROR = "Invalid ticker";
 
     @Autowired
-    private ClosePriceService closePriceService;
+    private DayMovingAverageService dayMovingAverageService;
 
-    public DayMovingAverageController(StringToLocalDateConverter converter, ClosePriceService closePriceService) {
+    public DayMovingAverageController(StringToLocalDateConverter converter, DayMovingAverageService dayMovingAverageService) {
         this.stringToLocalDateConverter = converter;
-        this.closePriceService = closePriceService;
+        this.dayMovingAverageService = dayMovingAverageService;
     }
 
     @RequestMapping(path = "200dma", method = RequestMethod.GET)
     public HttpEntity<DayMovingAverageListResponse> getDayMovingAverageList(@RequestParam("startDate") String startDateParam,
                                                                             @RequestParam("ticker") String idsParam) {
         DayMovingAverageListResponse response = new DayMovingAverageListResponse();
-        LocalDate startDate = this.stringToLocalDateConverter.convert(startDateParam, "start date", response);
+        LocalDate startDate = stringToLocalDateConverter.convert(startDateParam, "start date", response);
         idsParam = idsParam.replace(" ", "");
         String[] ids = idsParam.split(",");
         if(response.hasError()) {
             return new ResponseEntity<DayMovingAverageListResponse>(response, HttpStatus.NOT_FOUND);
         }
-        DayMovingAverageList dayMovingAverageList = this.closePriceService.get200DMAList(Arrays.asList(ids), startDate);
+        DayMovingAverageList dayMovingAverageList = dayMovingAverageService.get200DMAList(Arrays.asList(ids), startDate);
         response.setDayMovingAverageList(dayMovingAverageList);
         return new ResponseEntity<DayMovingAverageListResponse>(response, HttpStatus.OK);
     }
@@ -60,17 +60,22 @@ public class DayMovingAverageController {
         if(response.getErrors() != null) {
             return new ResponseEntity<DayMovingAverageResponse>(response, HttpStatus.NOT_FOUND);
         }
-        DayMovingAverage dayMovingAverage = null;
+        Optional<DayMovingAverage> optDayMovingAverage = Optional.empty();
         try {
-            dayMovingAverage = this.closePriceService.get200DMA(ticker, startDate);
-            if(dayMovingAverage == null){
-                LocalDate firstStartDateHaving200DMA = this.closePriceService.getFirstStartDateHaving200DMA(ticker);
-                response.addError("There is not enough data for 200 day moving average calculation. The first start date having enough data is " + firstStartDateHaving200DMA.toString());
+            optDayMovingAverage = dayMovingAverageService.get200DMA(ticker, startDate);
+            if(!optDayMovingAverage.isPresent()){
+                Optional<LocalDate> optFirstStartDateHaving200DMA = dayMovingAverageService.getFirstStartDateHaving200DMA(ticker);
+                if(optFirstStartDateHaving200DMA.isPresent()){
+                    response.addError("There is not enough data for 200 day moving average calculation. The first start date having enough data is " + optFirstStartDateHaving200DMA.get().toString());
+                }else {
+                    response.addError("There is not enough data for 200 day moving average calculation.");
+                }
+
             }else {
-                dayMovingAverage.setStartDate(null);
-                response.setDayMovingAverage(dayMovingAverage);
+                optDayMovingAverage.get().setStartDate(null);
+                response.setDayMovingAverage(optDayMovingAverage.get());
             }
-        } catch (QuandlDataSource.InvalidTicker invalidTicker) {
+        } catch (InvalidTickerException ex) {
             response.addError(INVALID_TICKER_ERROR);
             return new ResponseEntity<DayMovingAverageResponse>(response, HttpStatus.NOT_FOUND);
         }

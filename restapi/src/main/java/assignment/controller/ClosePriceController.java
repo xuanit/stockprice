@@ -1,9 +1,8 @@
 package assignment.controller;
 
 import assignment.controller.response.ClosePriceResponse;
-import assignment.controller.response.DayMovingAverageResponse;
-import assignment.datasource.QuandlDataSource;
-import assignment.model.DayMovingAverage;
+import assignment.datasource.DefaultDataSource;
+import assignment.model.InvalidTickerException;
 import assignment.model.Prices;
 import assignment.service.ClosePriceService;
 import org.slf4j.Logger;
@@ -55,7 +54,7 @@ public class ClosePriceController {
         Prices prices = null;
         try {
             prices = closePriceService.getClosePrices(ticker, startDate, endDate);
-        } catch (QuandlDataSource.InvalidTicker invalidTicker) {
+        } catch (InvalidTickerException ex) {
             response.addError(INVALID_TICKER_ERROR);
             return new ResponseEntity<ClosePriceResponse>(response, HttpStatus.NOT_FOUND);
         }

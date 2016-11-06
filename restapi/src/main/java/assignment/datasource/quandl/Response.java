@@ -1,4 +1,4 @@
-package assignment.datasource;
+package assignment.datasource.quandl;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -10,7 +10,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class Response {
 
     @JsonProperty("quandl_error")
-    private  Error error;
+    private Error error;
 
     @JsonProperty("dataset")
     private DataSet dataset;

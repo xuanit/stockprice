@@ -12,13 +12,14 @@ public class Prices {
 
     private final String ticker;
 
-    private String etag;
+    private final String etag;
 
     private final List<DateClose> dateCloses;
 
-    public Prices(String ticker, List<DateClose> dateCloses) {
+    public Prices(String ticker, List<DateClose> dateCloses, String etag) {
         this.ticker = ticker;
         this.dateCloses = dateCloses;
+        this.etag = etag;
     }
 
     public String getTicker() {
@@ -31,9 +32,5 @@ public class Prices {
 
     public String getEtag() {
         return etag;
-    }
-
-    public void setEtag(String etag) {
-        this.etag = etag;
     }
 }

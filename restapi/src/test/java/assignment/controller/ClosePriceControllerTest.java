@@ -1,11 +1,10 @@
 package assignment.controller;
 
 import assignment.model.DateClose;
-import assignment.datasource.QuandlDataSource;
-import assignment.model.DayMovingAverage;
+import assignment.datasource.DefaultDataSource;
+import assignment.model.InvalidTickerException;
 import assignment.model.Prices;
 import assignment.service.ClosePriceService;
-import org.hamcrest.Matchers;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import static org.mockito.Mockito.*;
@@ -51,7 +50,7 @@ public class ClosePriceControllerTest {
         List<DateClose> dateCloses = new ArrayList<>();
         dateCloses.add(new DateClose(LocalDate.of(2016, Month.OCTOBER, 31), (BigDecimal)bigDecimalFortmat.parse("9.99")));
         dateCloses.add(new DateClose(LocalDate.of(2016, Month.NOVEMBER, 01), (BigDecimal)bigDecimalFortmat.parse("1.00")));
-        Prices prices = new Prices("FB", dateCloses);
+        Prices prices = new Prices("FB", dateCloses, "etag");
         when(service.getClosePrices("FB", startDate, endDate)).thenReturn(prices);
         this.mockMvc.perform(get("/api/v2/FB/closePrice?startDate=2016-10-31&endDate=2016-11-01"))
                 .andExpect(status().isOk())
@@ -72,7 +71,7 @@ public class ClosePriceControllerTest {
     public void testGetClosePriceWithInvalidTickerReturn400Error() throws Exception {
         LocalDate startDate = LocalDate.of(2016, Month.OCTOBER, 31);
         LocalDate endDate = LocalDate.of(2016, Month.NOVEMBER, 1);
-        when(service.getClosePrices("INVALIDTICKER", startDate, endDate)).thenThrow(QuandlDataSource.InvalidTicker.class);
+        when(service.getClosePrices("INVALIDTICKER", startDate, endDate)).thenThrow(InvalidTickerException.class);
         this.mockMvc.perform(get("/api/v2/INVALIDTICKER/closePrice?startDate=2016-10-31&endDate=2016-11-01"))
                 .andExpect(status().isNotFound());
     }

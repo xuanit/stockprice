@@ -1,9 +1,9 @@
 package assignment.controller;
 
-import assignment.datasource.QuandlDataSource;
 import assignment.model.DayMovingAverage;
 import assignment.model.DayMovingAverageList;
-import assignment.service.ClosePriceService;
+import assignment.model.InvalidTickerException;
+import assignment.service.DayMovingAverageService;
 import org.hamcrest.Matchers;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,6 +19,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.Arrays;
+import java.util.Optional;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -27,7 +28,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
  * Created by xuan on 11/3/2016.
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest
+@SpringBootTest(properties = "spring.cache.type=none")
 @AutoConfigureMockMvc
 public class DayMovingAverageControllerTest {
 
@@ -35,14 +36,14 @@ public class DayMovingAverageControllerTest {
     private MockMvc mockMvc;
 
     @MockBean
-    private ClosePriceService service;
+    private DayMovingAverageService dayMovingAverageService;
 
     @Test
     public void testGetDayMovingAverageList() throws Exception {
         LocalDate startDate = LocalDate.of(2016, Month.OCTOBER, 31);
         DayMovingAverageList dayMovingAverageList = new DayMovingAverageList(startDate);
         dayMovingAverageList.getDayMovingAverages().add(new DayMovingAverage("FB", BigDecimal.valueOf(9).divide(BigDecimal.TEN), startDate));
-        when(this.service.get200DMAList(Arrays.asList("FB"), startDate))
+        when(this.dayMovingAverageService.get200DMAList(Arrays.asList("FB"), startDate))
                 .thenReturn(dayMovingAverageList);
         mockMvc.perform(get("/api/v2/200dma?startDate=2016-10-31&ticker=FB"))
                 .andExpect(status().isOk())
@@ -55,7 +56,7 @@ public class DayMovingAverageControllerTest {
         DayMovingAverageList dayMovingAverageList = new DayMovingAverageList(startDate);
         dayMovingAverageList.getDayMovingAverages().add(new DayMovingAverage("FB", BigDecimal.valueOf(9).divide(BigDecimal.TEN), startDate));
         dayMovingAverageList.getDayMovingAverages().add(new DayMovingAverage("MSFT", BigDecimal.valueOf(9).divide(BigDecimal.TEN), startDate));
-        when(this.service.get200DMAList(Arrays.asList("FB", "MSFT"), startDate))
+        when(this.dayMovingAverageService.get200DMAList(Arrays.asList("FB", "MSFT"), startDate))
                 .thenReturn(dayMovingAverageList);
         mockMvc.perform(get("/api/v2/200dma?startDate=2016-10-31&ticker=FB,MSFT"))
                 .andExpect(status().isOk())
@@ -76,8 +77,8 @@ public class DayMovingAverageControllerTest {
         BigDecimal avg = BigDecimal.valueOf(99).divide(BigDecimal.TEN);
         DayMovingAverage dayMovingAverage = new DayMovingAverage(ticker, avg);
         dayMovingAverage.setStartDate(startDate);
-        when(this.service.get200DMA(ticker, startDate))
-                .thenReturn(dayMovingAverage);
+        when(this.dayMovingAverageService.get200DMA(ticker, startDate))
+                .thenReturn(Optional.of(dayMovingAverage));
         this.mockMvc.perform(get("/api/v2/FB/200dma?startDate=2016-10-31"))
                 .andExpect(status().isOk())
                 .andExpect(content().string("{" +
@@ -97,8 +98,8 @@ public class DayMovingAverageControllerTest {
     @Test
     public void testGet200DMAInvalidTicker() throws Exception {
         LocalDate startDate = LocalDate.of(2016, Month.OCTOBER, 31);
-        when(this.service.get200DMA("INVALID", startDate))
-                .thenThrow(new QuandlDataSource.InvalidTicker());
+        when(this.dayMovingAverageService.get200DMA("INVALID", startDate))
+                .thenThrow(new InvalidTickerException());
         this.mockMvc.perform(get("/api/v2/INVALID/200dma?startDate=2016-10-31"))
                 .andExpect(status().isNotFound());
     }
@@ -107,10 +108,10 @@ public class DayMovingAverageControllerTest {
     public void testGet200DMAHavingSuggestedStartDateInErrorMessage() throws Exception {
         LocalDate startDate = LocalDate.of(2016, Month.OCTOBER, 31);
         LocalDate firstStartDate = LocalDate.of(2016, Month.OCTOBER, 30);
-        when(this.service.get200DMA("FB", startDate))
-                .thenReturn(null);
-        when((this.service.getFirstStartDateHaving200DMA("FB")))
-                .thenReturn(firstStartDate);
+        when(this.dayMovingAverageService.get200DMA("FB", startDate))
+                .thenReturn(Optional.empty());
+        when((this.dayMovingAverageService.getFirstStartDateHaving200DMA("FB")))
+                .thenReturn(Optional.of(firstStartDate));
         this.mockMvc.perform(get("/api/v2/FB/200dma?startDate=2016-10-31"))
                 .andExpect(status().isNotFound())
                 .andExpect(content().string(Matchers.containsString(firstStartDate.toString())));
