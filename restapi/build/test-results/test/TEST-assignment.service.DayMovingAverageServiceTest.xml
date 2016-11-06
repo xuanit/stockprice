@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="assignment.service.DayMovingAverageServiceTest" tests="10" skipped="0" failures="0" errors="0" timestamp="2016-11-06T09:50:49" hostname="xuan-PC" time="0.062">
+  <properties/>
+  <testcase name="testGetDayMovingAverageListWithInvalidTicker" classname="assignment.service.DayMovingAverageServiceTest" time="0.004"/>
+  <testcase name="testGetDayMovingAverageList" classname="assignment.service.DayMovingAverageServiceTest" time="0.005"/>
+  <testcase name="testGetDayMovingAverageForFirstAvailableStartDate" classname="assignment.service.DayMovingAverageServiceTest" time="0.006"/>
+  <testcase name="testGet200dmaWithAvailableDataAndStartDateNoneMatch" classname="assignment.service.DayMovingAverageServiceTest" time="0.004"/>
+  <testcase name="testGet200dmaWithNotAvailableData" classname="assignment.service.DayMovingAverageServiceTest" time="0.008"/>
+  <testcase name="testGet200dmaWithStartDateOverLastCloseDate" classname="assignment.service.DayMovingAverageServiceTest" time="0.005"/>
+  <testcase name="testGetDayMovingAverageForNewAsset" classname="assignment.service.DayMovingAverageServiceTest" time="0.007"/>
+  <testcase name="testGetFirstStartDate" classname="assignment.service.DayMovingAverageServiceTest" time="0.004"/>
+  <testcase name="testGet200dmaWithAvailableData" classname="assignment.service.DayMovingAverageServiceTest" time="0.003"/>
+  <testcase name="testGetFirstStartDateForNewAsset" classname="assignment.service.DayMovingAverageServiceTest" time="0.004"/>
+  <system-out><![CDATA[2016-11-06 16:50:49.607 DEBUG 8808 --- [    Test worker] assignment.datasource.DefaultDataSource  : get 200 close prices of INVALID from 2016-01-01
+2016-11-06 16:50:49.612 DEBUG 8808 --- [    Test worker] assignment.datasource.DefaultDataSource  : get 200 close prices of FB from 2016-01-01
+2016-11-06 16:50:49.613 DEBUG 8808 --- [    Test worker] assignment.datasource.DefaultDataSource  : got prices #assignment.model.Prices@7461412
+2016-11-06 16:50:49.614 DEBUG 8808 --- [    Test worker] assignment.datasource.DefaultDataSource  : get 200 close prices of MSFT from 2016-01-01
+2016-11-06 16:50:49.615 DEBUG 8808 --- [    Test worker] assignment.datasource.DefaultDataSource  : got prices #assignment.model.Prices@7f0c3cdc
+2016-11-06 16:50:49.618 DEBUG 8808 --- [    Test worker] assignment.datasource.DefaultDataSource  : get 200 close prices of FB from 2016-07-21
+2016-11-06 16:50:49.619 DEBUG 8808 --- [    Test worker] assignment.datasource.DefaultDataSource  : got prices #assignment.model.Prices@7d00b597
+2016-11-06 16:50:49.619 DEBUG 8808 --- [    Test worker] assignment.datasource.DefaultDataSource  : get 200 latest close price of FB
+2016-11-06 16:50:49.621 DEBUG 8808 --- [    Test worker] assignment.datasource.DefaultDataSource  : got prices #assignment.model.Prices@4ad1d8a1
+2016-11-06 16:50:49.626 DEBUG 8808 --- [    Test worker] assignment.datasource.DefaultDataSource  : get 200 close prices of FB from 2016-01-02
+2016-11-06 16:50:49.628 DEBUG 8808 --- [    Test worker] assignment.datasource.DefaultDataSource  : got prices #assignment.model.Prices@2a615fe6
+2016-11-06 16:50:49.632 DEBUG 8808 --- [    Test worker] assignment.datasource.DefaultDataSource  : get 200 close prices of FB from 2016-07-21
+2016-11-06 16:50:49.633 DEBUG 8808 --- [    Test worker] assignment.datasource.DefaultDataSource  : got prices #assignment.model.Prices@16653517
+2016-11-06 16:50:49.640 DEBUG 8808 --- [    Test worker] assignment.datasource.DefaultDataSource  : get 200 close prices of FB from 2017-08-22
+2016-11-06 16:50:49.641 DEBUG 8808 --- [    Test worker] assignment.datasource.DefaultDataSource  : got prices #assignment.model.Prices@4dbaee36
+2016-11-06 16:50:49.648 DEBUG 8808 --- [    Test worker] assignment.datasource.DefaultDataSource  : get 200 close prices of NEW from 2016-11-06
+2016-11-06 16:50:49.649 DEBUG 8808 --- [    Test worker] assignment.datasource.DefaultDataSource  : got prices #assignment.model.Prices@f59a655
+2016-11-06 16:50:49.650 DEBUG 8808 --- [    Test worker] assignment.datasource.DefaultDataSource  : get 200 latest close price of NEW
+2016-11-06 16:50:49.651 DEBUG 8808 --- [    Test worker] assignment.datasource.DefaultDataSource  : got prices #assignment.model.Prices@4280595b
+2016-11-06 16:50:49.656 DEBUG 8808 --- [    Test worker] assignment.datasource.DefaultDataSource  : get 200 latest close price of FB
+2016-11-06 16:50:49.657 DEBUG 8808 --- [    Test worker] assignment.datasource.DefaultDataSource  : got prices #assignment.model.Prices@37135213
+2016-11-06 16:50:49.659 DEBUG 8808 --- [    Test worker] assignment.datasource.DefaultDataSource  : get 200 close prices of FB from 2016-01-01
+2016-11-06 16:50:49.660 DEBUG 8808 --- [    Test worker] assignment.datasource.DefaultDataSource  : got prices #assignment.model.Prices@3530f4d7
+2016-11-06 16:50:49.664 DEBUG 8808 --- [    Test worker] assignment.datasource.DefaultDataSource  : get 200 latest close price of NEW
+2016-11-06 16:50:49.665 DEBUG 8808 --- [    Test worker] assignment.datasource.DefaultDataSource  : got prices #assignment.model.Prices@4eba0965
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -16,8 +16,7 @@ apply plugin: 'idea'
 apply plugin: 'spring-boot'
 
 jar {
-    baseName = 'assignment-rest-api'
-    version =  '1.0.0'
+    archiveName = 'stockPriceService.jar'
 }
 
 repositories {

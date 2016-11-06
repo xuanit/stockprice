@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="x-ua-compatible" content="IE=edge"/>
+<title>Test results - Class assignment.service.DayMovingAverageServiceTest</title>
+<link href="../css/base-style.css" rel="stylesheet" type="text/css"/>
+<link href="../css/style.css" rel="stylesheet" type="text/css"/>
+<script src="../js/report.js" type="text/javascript"></script>
+</head>
+<body>
+<div id="content">
+<h1>Class assignment.service.DayMovingAverageServiceTest</h1>
+<div class="breadcrumbs">
+<a href="../index.html">all</a> &gt; 
+<a href="../packages/assignment.service.html">assignment.service</a> &gt; DayMovingAverageServiceTest</div>
+<div id="summary">
+<table>
+<tr>
+<td>
+<div class="summaryGroup">
+<table>
+<tr>
+<td>
+<div class="infoBox" id="tests">
+<div class="counter">10</div>
+<p>tests</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="failures">
+<div class="counter">0</div>
+<p>failures</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="ignored">
+<div class="counter">0</div>
+<p>ignored</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="duration">
+<div class="counter">0.050s</div>
+<p>duration</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</td>
+<td>
+<div class="infoBox success" id="successRate">
+<div class="percent">100%</div>
+<p>successful</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div id="tabs">
+<ul class="tabLinks">
+<li>
+<a href="#tab0">Tests</a>
+</li>
+<li>
+<a href="#tab1">Standard output</a>
+</li>
+</ul>
+<div id="tab0" class="tab">
+<h2>Tests</h2>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>Duration</th>
+<th>Result</th>
+</tr>
+</thead>
+<tr>
+<td class="success">testGet200dmaWithAvailableData</td>
+<td>0.003s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">testGet200dmaWithAvailableDataAndStartDateNoneMatch</td>
+<td>0.004s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">testGet200dmaWithNotAvailableData</td>
+<td>0.008s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">testGet200dmaWithStartDateOverLastCloseDate</td>
+<td>0.005s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">testGetDayMovingAverageForFirstAvailableStartDate</td>
+<td>0.006s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">testGetDayMovingAverageForNewAsset</td>
+<td>0.007s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">testGetDayMovingAverageList</td>
+<td>0.005s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">testGetDayMovingAverageListWithInvalidTicker</td>
+<td>0.004s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">testGetFirstStartDate</td>
+<td>0.004s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">testGetFirstStartDateForNewAsset</td>
+<td>0.004s</td>
+<td class="success">passed</td>
+</tr>
+</table>
+</div>
+<div id="tab1" class="tab">
+<h2>Standard output</h2>
+<span class="code">
+<pre>2016-11-06 16:50:49.607 DEBUG 8808 --- [    Test worker] assignment.datasource.DefaultDataSource  : get 200 close prices of INVALID from 2016-01-01
+2016-11-06 16:50:49.612 DEBUG 8808 --- [    Test worker] assignment.datasource.DefaultDataSource  : get 200 close prices of FB from 2016-01-01
+2016-11-06 16:50:49.613 DEBUG 8808 --- [    Test worker] assignment.datasource.DefaultDataSource  : got prices #assignment.model.Prices@7461412
+2016-11-06 16:50:49.614 DEBUG 8808 --- [    Test worker] assignment.datasource.DefaultDataSource  : get 200 close prices of MSFT from 2016-01-01
+2016-11-06 16:50:49.615 DEBUG 8808 --- [    Test worker] assignment.datasource.DefaultDataSource  : got prices #assignment.model.Prices@7f0c3cdc
+2016-11-06 16:50:49.618 DEBUG 8808 --- [    Test worker] assignment.datasource.DefaultDataSource  : get 200 close prices of FB from 2016-07-21
+2016-11-06 16:50:49.619 DEBUG 8808 --- [    Test worker] assignment.datasource.DefaultDataSource  : got prices #assignment.model.Prices@7d00b597
+2016-11-06 16:50:49.619 DEBUG 8808 --- [    Test worker] assignment.datasource.DefaultDataSource  : get 200 latest close price of FB
+2016-11-06 16:50:49.621 DEBUG 8808 --- [    Test worker] assignment.datasource.DefaultDataSource  : got prices #assignment.model.Prices@4ad1d8a1
+2016-11-06 16:50:49.626 DEBUG 8808 --- [    Test worker] assignment.datasource.DefaultDataSource  : get 200 close prices of FB from 2016-01-02
+2016-11-06 16:50:49.628 DEBUG 8808 --- [    Test worker] assignment.datasource.DefaultDataSource  : got prices #assignment.model.Prices@2a615fe6
+2016-11-06 16:50:49.632 DEBUG 8808 --- [    Test worker] assignment.datasource.DefaultDataSource  : get 200 close prices of FB from 2016-07-21
+2016-11-06 16:50:49.633 DEBUG 8808 --- [    Test worker] assignment.datasource.DefaultDataSource  : got prices #assignment.model.Prices@16653517
+2016-11-06 16:50:49.640 DEBUG 8808 --- [    Test worker] assignment.datasource.DefaultDataSource  : get 200 close prices of FB from 2017-08-22
+2016-11-06 16:50:49.641 DEBUG 8808 --- [    Test worker] assignment.datasource.DefaultDataSource  : got prices #assignment.model.Prices@4dbaee36
+2016-11-06 16:50:49.648 DEBUG 8808 --- [    Test worker] assignment.datasource.DefaultDataSource  : get 200 close prices of NEW from 2016-11-06
+2016-11-06 16:50:49.649 DEBUG 8808 --- [    Test worker] assignment.datasource.DefaultDataSource  : got prices #assignment.model.Prices@f59a655
+2016-11-06 16:50:49.650 DEBUG 8808 --- [    Test worker] assignment.datasource.DefaultDataSource  : get 200 latest close price of NEW
+2016-11-06 16:50:49.651 DEBUG 8808 --- [    Test worker] assignment.datasource.DefaultDataSource  : got prices #assignment.model.Prices@4280595b
+2016-11-06 16:50:49.656 DEBUG 8808 --- [    Test worker] assignment.datasource.DefaultDataSource  : get 200 latest close price of FB
+2016-11-06 16:50:49.657 DEBUG 8808 --- [    Test worker] assignment.datasource.DefaultDataSource  : got prices #assignment.model.Prices@37135213
+2016-11-06 16:50:49.659 DEBUG 8808 --- [    Test worker] assignment.datasource.DefaultDataSource  : get 200 close prices of FB from 2016-01-01
+2016-11-06 16:50:49.660 DEBUG 8808 --- [    Test worker] assignment.datasource.DefaultDataSource  : got prices #assignment.model.Prices@3530f4d7
+2016-11-06 16:50:49.664 DEBUG 8808 --- [    Test worker] assignment.datasource.DefaultDataSource  : get 200 latest close price of NEW
+2016-11-06 16:50:49.665 DEBUG 8808 --- [    Test worker] assignment.datasource.DefaultDataSource  : got prices #assignment.model.Prices@4eba0965
+</pre>
+</span>
+</div>
+</div>
+<div id="footer">
+<p>
+<div>
+<label class="hidden" id="label-for-line-wrapping-toggle" for="line-wrapping-toggle">Wrap lines
+<input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
+</label>
+</div>Generated by 
+<a href="http://www.gradle.org">Gradle 3.1</a> at Nov 6, 2016 4:50:49 PM</p>
+</div>
+</div>
+</body>
+</html>

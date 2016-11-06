@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="assignment.datasource.QuandlDataHolderTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2016-11-06T09:50:49" hostname="xuan-PC" time="0.417">
+  <properties/>
+  <testcase name="testGetDateSetWithInvalidTicker" classname="assignment.datasource.QuandlDataHolderTest" time="0.366"/>
+  <testcase name="testRefreshDataSetNonMatchEtag" classname="assignment.datasource.QuandlDataHolderTest" time="0.02"/>
+  <testcase name="testRefreshDataSetMatchEtag" classname="assignment.datasource.QuandlDataHolderTest" time="0.016"/>
+  <testcase name="testGetDataSetNormally" classname="assignment.datasource.QuandlDataHolderTest" time="0.014"/>
+  <system-out><![CDATA[2016-11-06 16:50:49.173 DEBUG 8808 --- [    Test worker] a.datasource.quandl.QuandlDataHolder     : Getting dataset INVALID with etag null
+2016-11-06 16:50:49.531 DEBUG 8808 --- [    Test worker] a.datasource.quandl.QuandlDataHolder     : Getting dataset FB with etag W/"620779fe7c51b507e53324df535dcf96"
+2016-11-06 16:50:49.548 DEBUG 8808 --- [    Test worker] a.datasource.quandl.QuandlDataHolder     : Getting dataset FB with etag W/"620779fe7c51b507e53324df535dcf96"
+2016-11-06 16:50:49.556 DEBUG 8808 --- [    Test worker] a.datasource.quandl.QuandlDataHolder     : dataset has not changed.
+2016-11-06 16:50:49.565 DEBUG 8808 --- [    Test worker] a.datasource.quandl.QuandlDataHolder     : Getting dataset FB with etag null
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

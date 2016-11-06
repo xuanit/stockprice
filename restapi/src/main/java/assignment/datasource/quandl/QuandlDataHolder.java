@@ -1,16 +1,13 @@
 package assignment.datasource.quandl;
 
-import assignment.datasource.*;
+import assignment.datasource.DataHolder;
+import assignment.datasource.DefaultDataSource;
 import assignment.model.DateClose;
 import assignment.model.InvalidTickerException;
 import assignment.model.Prices;
-import com.sun.javaws.exceptions.InvalidArgumentException;
-import org.apache.commons.lang3.ObjectUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.CachePut;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.*;
 import org.springframework.http.client.ClientHttpResponse;
 import org.springframework.stereotype.Component;
@@ -20,7 +17,6 @@ import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
 import java.math.BigDecimal;
-import java.security.cert.PKIXRevocationChecker;
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.time.LocalDate;
@@ -78,7 +74,7 @@ public class QuandlDataHolder implements DataHolder {
         StringBuilder urlBuilder = new StringBuilder();
         urlBuilder.append(API_URL).append("{dataSet}.json?");
         Map<String, Object> params = new LinkedHashMap<>();
-        params.put("api_key", "N1us7CxC5N1tiCVFTdsk");//for testing at local
+        //params.put("api_key", "N1us7CxC5N1tiCVFTdsk");//for testing at local
         params.put(DefaultDataSource.COLUMN_INDEX, DefaultDataSource.CLOSE_COLUMN);
         params.put(ORDER, ORDER_ASC);
         for(String param : params.keySet()) {

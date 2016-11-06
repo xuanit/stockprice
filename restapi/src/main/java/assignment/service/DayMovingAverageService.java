@@ -105,7 +105,7 @@ public class DayMovingAverageService {
                 }
             } catch (InvalidTickerException ex) {
                 optDayMovingAverage = Optional.of(new DayMovingAverage(tickerSymbol, null));
-                optDayMovingAverage.get().setErrorMessage("Invalid Ticker Symbol.");
+                optDayMovingAverage.get().setErrorMessage("Invalid Ticker.");
             }
             dmaList.getDayMovingAverages().add(optDayMovingAverage.get());
         }
