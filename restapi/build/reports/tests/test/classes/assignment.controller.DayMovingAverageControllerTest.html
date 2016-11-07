@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">0.078s</div>
+<div class="counter">0.101s</div>
 <p>duration</p>
 </div>
 </td>
@@ -79,17 +79,17 @@
 </thead>
 <tr>
 <td class="success">testGet200DMAHavingSuggestedStartDateInErrorMessage</td>
-<td>0.020s</td>
+<td>0.023s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">testGet200DMAInvalidStartDate</td>
-<td>0.006s</td>
+<td>0.020s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">testGet200DMAInvalidTicker</td>
-<td>0.008s</td>
+<td>0.016s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -99,17 +99,17 @@
 </tr>
 <tr>
 <td class="success">testGetDayMovingAverageList</td>
-<td>0.012s</td>
+<td>0.013s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">testGetDayMovingAverageListWithInvalidStartDate</td>
-<td>0.016s</td>
+<td>0.010s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">testGetDayMovingAverageListWithTwoTicker</td>
-<td>0.006s</td>
+<td>0.009s</td>
 <td class="success">passed</td>
 </tr>
 </table>
@@ -117,14 +117,14 @@
 <div id="tab1" class="tab">
 <h2>Standard output</h2>
 <span class="code">
-<pre>2016-11-06 16:50:45.771  INFO 8808 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Neither @ContextConfiguration nor @ContextHierarchy found for test class [assignment.controller.DayMovingAverageControllerTest], using SpringBootContextLoader
-2016-11-06 16:50:45.773  INFO 8808 --- [    Test worker] o.s.t.c.support.AbstractContextLoader    : Could not detect default resource locations for test class [assignment.controller.DayMovingAverageControllerTest]: no resource found for suffixes {-context.xml, Context.groovy}.
-2016-11-06 16:50:45.773  INFO 8808 --- [    Test worker] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [assignment.controller.DayMovingAverageControllerTest]: DayMovingAverageControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-2016-11-06 16:50:45.787  INFO 8808 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration assignment.Application for test class assignment.controller.DayMovingAverageControllerTest
-2016-11-06 16:50:45.793  INFO 8808 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener]
-2016-11-06 16:50:45.800  INFO 8808 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Could not instantiate TestExecutionListener [org.springframework.test.context.transaction.TransactionalTestExecutionListener]. Specify custom listener classes or make the default listener classes (and their required dependencies) available. Offending class: [org/springframework/transaction/interceptor/TransactionAttributeSource]
-2016-11-06 16:50:45.803  INFO 8808 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Could not instantiate TestExecutionListener [org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener]. Specify custom listener classes or make the default listener classes (and their required dependencies) available. Offending class: [org/springframework/transaction/interceptor/TransactionAttribute]
-2016-11-06 16:50:45.805  INFO 8808 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@2b23cb8d, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@4e926bb4, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@3bb8e606, org.springframework.test.context.support.DirtiesContextTestExecutionListener@5689e46e, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@63c32291, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@3e513a96, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@42a5738c, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@5b965522, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@21bb236b, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@16093840]
+<pre>2016-11-07 08:14:30.378  INFO 11708 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Neither @ContextConfiguration nor @ContextHierarchy found for test class [assignment.controller.DayMovingAverageControllerTest], using SpringBootContextLoader
+2016-11-07 08:14:30.379  INFO 11708 --- [    Test worker] o.s.t.c.support.AbstractContextLoader    : Could not detect default resource locations for test class [assignment.controller.DayMovingAverageControllerTest]: no resource found for suffixes {-context.xml, Context.groovy}.
+2016-11-07 08:14:30.380  INFO 11708 --- [    Test worker] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [assignment.controller.DayMovingAverageControllerTest]: DayMovingAverageControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2016-11-07 08:14:30.392  INFO 11708 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration assignment.Application for test class assignment.controller.DayMovingAverageControllerTest
+2016-11-07 08:14:30.397  INFO 11708 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener]
+2016-11-07 08:14:30.401  INFO 11708 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Could not instantiate TestExecutionListener [org.springframework.test.context.transaction.TransactionalTestExecutionListener]. Specify custom listener classes or make the default listener classes (and their required dependencies) available. Offending class: [org/springframework/transaction/interceptor/TransactionAttributeSource]
+2016-11-07 08:14:30.402  INFO 11708 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Could not instantiate TestExecutionListener [org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener]. Specify custom listener classes or make the default listener classes (and their required dependencies) available. Offending class: [org/springframework/transaction/interceptor/TransactionAttribute]
+2016-11-07 08:14:30.403  INFO 11708 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@14a5e94c, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@2b2b4de4, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@29d991ac, org.springframework.test.context.support.DirtiesContextTestExecutionListener@61c293ab, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@5a96f956, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@2b23cb8d, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@4e926bb4, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@3bb8e606, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@5689e46e, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@63c32291]
 
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -134,30 +134,30 @@
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::        (v1.4.1.RELEASE)
 
-2016-11-06 16:50:45.902  INFO 8808 --- [    Test worker] a.c.DayMovingAverageControllerTest       : Starting DayMovingAverageControllerTest on xuan-PC with PID 8808 (started by xuan in D:\sentifi\assignment\restapi)
-2016-11-06 16:50:45.905  INFO 8808 --- [    Test worker] a.c.DayMovingAverageControllerTest       : No active profile set, falling back to default profiles: default
-2016-11-06 16:50:45.910  INFO 8808 --- [    Test worker] o.s.w.c.s.GenericWebApplicationContext   : Refreshing org.springframework.web.context.support.GenericWebApplicationContext@679360a9: startup date [Sun Nov 06 16:50:45 ICT 2016]; root of context hierarchy
-2016-11-06 16:50:47.022  INFO 8808 --- [    Test worker] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cache.annotation.ProxyCachingConfiguration' of type [class org.springframework.cache.annotation.ProxyCachingConfiguration$$EnhancerBySpringCGLIB$$febb023c] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2016-11-06 16:50:47.042  INFO 8808 --- [    Test worker] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.boot.autoconfigure.cache.CacheAutoConfiguration' of type [class org.springframework.boot.autoconfigure.cache.CacheAutoConfiguration$$EnhancerBySpringCGLIB$$f32ec6e0] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2016-11-06 16:50:47.072  INFO 8808 --- [    Test worker] trationDelegate$BeanPostProcessorChecker : Bean 'spring.cache-org.springframework.boot.autoconfigure.cache.CacheProperties' of type [class org.springframework.boot.autoconfigure.cache.CacheProperties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2016-11-06 16:50:47.078  INFO 8808 --- [    Test worker] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.boot.autoconfigure.cache.NoOpCacheConfiguration' of type [class org.springframework.boot.autoconfigure.cache.NoOpCacheConfiguration$$EnhancerBySpringCGLIB$$b0a88f91] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2016-11-06 16:50:47.083  INFO 8808 --- [    Test worker] trationDelegate$BeanPostProcessorChecker : Bean 'cacheManager' of type [class org.springframework.cache.support.NoOpCacheManager] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2016-11-06 16:50:47.084  INFO 8808 --- [    Test worker] trationDelegate$BeanPostProcessorChecker : Bean 'cacheAutoConfigurationValidator' of type [class org.springframework.boot.autoconfigure.cache.CacheAutoConfiguration$CacheManagerValidator] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2016-11-06 16:50:47.887  INFO 8808 --- [    Test worker] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring FrameworkServlet ''
-2016-11-06 16:50:47.890  INFO 8808 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : FrameworkServlet '': initialization started
-2016-11-06 16:50:48.036  INFO 8808 --- [    Test worker] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped &quot;{[/api/v2/{tickersymbol}/closePrice],methods=[GET]}&quot; onto public org.springframework.http.HttpEntity&lt;assignment.controller.response.ClosePriceResponse&gt; assignment.controller.ClosePriceController.getClosePrices(java.lang.String,java.lang.String,java.lang.String)
-2016-11-06 16:50:48.037  INFO 8808 --- [    Test worker] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped &quot;{[/api/v2/{tickersymbol}/200dma],methods=[GET]}&quot; onto public org.springframework.http.HttpEntity&lt;assignment.controller.response.DayMovingAverageResponse&gt; assignment.controller.DayMovingAverageController.get200DMA(java.lang.String,java.lang.String)
-2016-11-06 16:50:48.041  INFO 8808 --- [    Test worker] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped &quot;{[/api/v2/200dma],methods=[GET]}&quot; onto public org.springframework.http.HttpEntity&lt;assignment.controller.response.DayMovingAverageListResponse&gt; assignment.controller.DayMovingAverageController.getDayMovingAverageList(java.lang.String,java.lang.String)
-2016-11-06 16:50:48.046  INFO 8808 --- [    Test worker] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped &quot;{[/error]}&quot; onto public org.springframework.http.ResponseEntity&lt;java.util.Map&lt;java.lang.String, java.lang.Object&gt;&gt; org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
-2016-11-06 16:50:48.048  INFO 8808 --- [    Test worker] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped &quot;{[/error],produces=[text/html]}&quot; onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
-2016-11-06 16:50:48.169  INFO 8808 --- [    Test worker] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
-2016-11-06 16:50:48.171  INFO 8808 --- [    Test worker] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
-2016-11-06 16:50:48.245  INFO 8808 --- [    Test worker] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
-2016-11-06 16:50:48.338  INFO 8808 --- [    Test worker] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.web.context.support.GenericWebApplicationContext@679360a9: startup date [Sun Nov 06 16:50:45 ICT 2016]; root of context hierarchy
-2016-11-06 16:50:48.572  INFO 8808 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : FrameworkServlet '': initialization completed in 680 ms
-2016-11-06 16:50:48.931  INFO 8808 --- [    Test worker] s.a.ScheduledAnnotationBeanPostProcessor : No TaskScheduler/ScheduledExecutorService bean found for scheduled processing
-2016-11-06 16:50:48.934 DEBUG 8808 --- [pool-2-thread-1] assignment.datasource.CacheMonitor       : cache monitor started.2016-11-06T16:50:48.934
-2016-11-06 16:50:48.935 ERROR 8808 --- [pool-2-thread-1] assignment.datasource.CacheMonitor       : Error while refreshing cache.
+2016-11-07 08:14:30.487  INFO 11708 --- [    Test worker] a.c.DayMovingAverageControllerTest       : Starting DayMovingAverageControllerTest on xuan-PC with PID 11708 (started by xuan in D:\sentifi\assignment\restapi)
+2016-11-07 08:14:30.489  INFO 11708 --- [    Test worker] a.c.DayMovingAverageControllerTest       : No active profile set, falling back to default profiles: default
+2016-11-07 08:14:30.494  INFO 11708 --- [    Test worker] o.s.w.c.s.GenericWebApplicationContext   : Refreshing org.springframework.web.context.support.GenericWebApplicationContext@6434e31f: startup date [Mon Nov 07 08:14:30 ICT 2016]; root of context hierarchy
+2016-11-07 08:14:31.146  INFO 11708 --- [    Test worker] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cache.annotation.ProxyCachingConfiguration' of type [class org.springframework.cache.annotation.ProxyCachingConfiguration$$EnhancerBySpringCGLIB$$febb023c] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2016-11-07 08:14:31.158  INFO 11708 --- [    Test worker] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.boot.autoconfigure.cache.CacheAutoConfiguration' of type [class org.springframework.boot.autoconfigure.cache.CacheAutoConfiguration$$EnhancerBySpringCGLIB$$f32ec6e0] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2016-11-07 08:14:31.202  INFO 11708 --- [    Test worker] trationDelegate$BeanPostProcessorChecker : Bean 'spring.cache-org.springframework.boot.autoconfigure.cache.CacheProperties' of type [class org.springframework.boot.autoconfigure.cache.CacheProperties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2016-11-07 08:14:31.214  INFO 11708 --- [    Test worker] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.boot.autoconfigure.cache.NoOpCacheConfiguration' of type [class org.springframework.boot.autoconfigure.cache.NoOpCacheConfiguration$$EnhancerBySpringCGLIB$$b0a88f91] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2016-11-07 08:14:31.220  INFO 11708 --- [    Test worker] trationDelegate$BeanPostProcessorChecker : Bean 'cacheManager' of type [class org.springframework.cache.support.NoOpCacheManager] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2016-11-07 08:14:31.222  INFO 11708 --- [    Test worker] trationDelegate$BeanPostProcessorChecker : Bean 'cacheAutoConfigurationValidator' of type [class org.springframework.boot.autoconfigure.cache.CacheAutoConfiguration$CacheManagerValidator] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2016-11-07 08:14:31.859  INFO 11708 --- [    Test worker] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring FrameworkServlet ''
+2016-11-07 08:14:31.862  INFO 11708 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : FrameworkServlet '': initialization started
+2016-11-07 08:14:31.968  INFO 11708 --- [    Test worker] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped &quot;{[/api/v2/{tickersymbol}/closePrice],methods=[GET],produces=[application/json]}&quot; onto public org.springframework.http.HttpEntity&lt;assignment.controller.response.ClosePriceResponse&gt; assignment.controller.ClosePriceController.getClosePrices(java.lang.String,java.lang.String,java.lang.String)
+2016-11-07 08:14:31.970  INFO 11708 --- [    Test worker] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped &quot;{[/api/v2/200dma],methods=[GET],produces=[application/json]}&quot; onto public org.springframework.http.HttpEntity&lt;assignment.controller.response.DayMovingAverageListResponse&gt; assignment.controller.DayMovingAverageController.getDayMovingAverageList(java.lang.String,java.lang.String)
+2016-11-07 08:14:31.972  INFO 11708 --- [    Test worker] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped &quot;{[/api/v2/{tickersymbol}/200dma],methods=[GET],produces=[application/json]}&quot; onto public org.springframework.http.HttpEntity&lt;assignment.controller.response.DayMovingAverageResponse&gt; assignment.controller.DayMovingAverageController.get200DMA(java.lang.String,java.lang.String)
+2016-11-07 08:14:31.974  INFO 11708 --- [    Test worker] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped &quot;{[/error]}&quot; onto public org.springframework.http.ResponseEntity&lt;java.util.Map&lt;java.lang.String, java.lang.Object&gt;&gt; org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2016-11-07 08:14:31.976  INFO 11708 --- [    Test worker] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped &quot;{[/error],produces=[text/html]}&quot; onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2016-11-07 08:14:32.031  INFO 11708 --- [    Test worker] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2016-11-07 08:14:32.032  INFO 11708 --- [    Test worker] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2016-11-07 08:14:32.067  INFO 11708 --- [    Test worker] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2016-11-07 08:14:32.137  INFO 11708 --- [    Test worker] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.web.context.support.GenericWebApplicationContext@6434e31f: startup date [Mon Nov 07 08:14:30 ICT 2016]; root of context hierarchy
+2016-11-07 08:14:32.242  INFO 11708 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : FrameworkServlet '': initialization completed in 379 ms
+2016-11-07 08:14:32.590  INFO 11708 --- [    Test worker] s.a.ScheduledAnnotationBeanPostProcessor : No TaskScheduler/ScheduledExecutorService bean found for scheduled processing
+2016-11-07 08:14:32.595 DEBUG 11708 --- [pool-2-thread-1] assignment.datasource.CacheMonitor       : cache monitor started.2016-11-07T08:14:32.595
+2016-11-07 08:14:32.597 ERROR 11708 --- [pool-2-thread-1] assignment.datasource.CacheMonitor       : Error while refreshing cache.
 
 java.lang.NullPointerException: null
 	at assignment.datasource.CacheMonitor.run(CacheMonitor.java:48)
@@ -175,7 +175,7 @@ java.lang.NullPointerException: null
 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
 	at java.lang.Thread.run(Thread.java:745)
 
-2016-11-06 16:50:48.937  INFO 8808 --- [    Test worker] a.c.DayMovingAverageControllerTest       : Started DayMovingAverageControllerTest in 3.116 seconds (JVM running for 11.466)
+2016-11-07 08:14:32.601  INFO 11708 --- [    Test worker] a.c.DayMovingAverageControllerTest       : Started DayMovingAverageControllerTest in 2.186 seconds (JVM running for 9.926)
 </pre>
 </span>
 </div>
@@ -187,7 +187,7 @@ java.lang.NullPointerException: null
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="http://www.gradle.org">Gradle 3.1</a> at Nov 6, 2016 4:50:49 PM</p>
+<a href="http://www.gradle.org">Gradle 3.1</a> at Nov 7, 2016 8:14:33 AM</p>
 </div>
 </div>
 </body>

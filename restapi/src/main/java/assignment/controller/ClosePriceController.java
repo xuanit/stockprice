@@ -19,7 +19,7 @@ import java.time.LocalDate;
  * Created by xuan on 11/1/2016.
  */
 @RestController
-@RequestMapping("api/v2/{tickersymbol}/")
+@RequestMapping(value = "api/v2/{tickersymbol}/", produces = "application/json")
 public class ClosePriceController {
 
     private static final Logger logger = LoggerFactory.getLogger(ClosePriceController.class);

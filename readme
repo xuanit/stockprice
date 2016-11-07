@@ -24,3 +24,5 @@ Document for story #3
 		 }
 		}
 	Invalid startDate returns Http Status 404. Invalid ticker parameter format returns Http Status 404.
+	
+Please see architecture.png to have an overview about the system.

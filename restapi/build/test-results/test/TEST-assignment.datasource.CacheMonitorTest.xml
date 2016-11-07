@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="assignment.datasource.CacheMonitorTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2016-11-06T09:50:49" hostname="xuan-PC" time="0.018">
+<testsuite name="assignment.datasource.CacheMonitorTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2016-11-07T01:14:32" hostname="xuan-PC" time="0.018">
   <properties/>
-  <testcase name="testRunNormally" classname="assignment.datasource.CacheMonitorTest" time="0.01"/>
-  <testcase name="testRunExceptionCaught" classname="assignment.datasource.CacheMonitorTest" time="0.007"/>
-  <system-out><![CDATA[2016-11-06 16:50:49.132 DEBUG 8808 --- [    Test worker] assignment.datasource.CacheMonitor       : cache monitor started.2016-11-06T16:50:49.132
-2016-11-06 16:50:49.133 DEBUG 8808 --- [    Test worker] assignment.datasource.CacheMonitor       : Cache monitor ran in (milliseconds) 1 for 1 entities
-2016-11-06 16:50:49.146 DEBUG 8808 --- [    Test worker] assignment.datasource.CacheMonitor       : cache monitor started.2016-11-06T16:50:49.146
-2016-11-06 16:50:49.147 ERROR 8808 --- [    Test worker] assignment.datasource.CacheMonitor       : Error while refreshing cache.
+  <testcase name="testRunNormally" classname="assignment.datasource.CacheMonitorTest" time="0.009"/>
+  <testcase name="testRunExceptionCaught" classname="assignment.datasource.CacheMonitorTest" time="0.008"/>
+  <system-out><![CDATA[2016-11-07 08:14:32.850 DEBUG 11708 --- [    Test worker] assignment.datasource.CacheMonitor       : cache monitor started.2016-11-07T08:14:32.850
+2016-11-07 08:14:32.851 DEBUG 11708 --- [    Test worker] assignment.datasource.CacheMonitor       : Cache monitor ran in (milliseconds) 1 for 1 entities
+2016-11-07 08:14:32.864 DEBUG 11708 --- [    Test worker] assignment.datasource.CacheMonitor       : cache monitor started.2016-11-07T08:14:32.864
+2016-11-07 08:14:32.866 ERROR 11708 --- [    Test worker] assignment.datasource.CacheMonitor       : Error while refreshing cache.
 
 java.lang.Exception: null
 

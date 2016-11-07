@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="assignment.service.ClosePriceServiceTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2016-11-06T09:50:49" hostname="xuan-PC" time="0.014">
+<testsuite name="assignment.service.ClosePriceServiceTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2016-11-07T01:14:33" hostname="xuan-PC" time="0.038">
   <properties/>
-  <testcase name="testGetClosePricesWithStartDateAndEndDateMatch" classname="assignment.service.ClosePriceServiceTest" time="0.006"/>
-  <testcase name="testGetClosePricesWithNoStartDateAndEndDateMatch" classname="assignment.service.ClosePriceServiceTest" time="0.003"/>
-  <testcase name="testGetClosePricesWithInvalidTicker" classname="assignment.service.ClosePriceServiceTest" time="0.004"/>
-  <system-out><![CDATA[2016-11-06 16:50:49.579 DEBUG 8808 --- [    Test worker] assignment.datasource.DefaultDataSource  : get close prices of FB from 2016-01-01 to 2016-01-03
-2016-11-06 16:50:49.580 DEBUG 8808 --- [    Test worker] assignment.datasource.DefaultDataSource  : got prices #assignment.model.Prices@650364ac
-2016-11-06 16:50:49.583 DEBUG 8808 --- [    Test worker] assignment.datasource.DefaultDataSource  : get close prices of FB from 2016-01-02 to 2016-01-04
-2016-11-06 16:50:49.583 DEBUG 8808 --- [    Test worker] assignment.datasource.DefaultDataSource  : got prices #assignment.model.Prices@60fa553b
-2016-11-06 16:50:49.587 DEBUG 8808 --- [    Test worker] assignment.datasource.DefaultDataSource  : get close prices of INVALID from 2016-01-01 to 2016-01-01
+  <testcase name="testGetClosePricesWithStartDateAndEndDateMatch" classname="assignment.service.ClosePriceServiceTest" time="0.012"/>
+  <testcase name="testGetClosePricesWithNoStartDateAndEndDateMatch" classname="assignment.service.ClosePriceServiceTest" time="0.006"/>
+  <testcase name="testGetClosePricesWithInvalidTicker" classname="assignment.service.ClosePriceServiceTest" time="0.018"/>
+  <system-out><![CDATA[2016-11-07 08:14:33.270 DEBUG 11708 --- [    Test worker] assignment.datasource.DefaultDataSource  : get close prices of FB from 2016-01-01 to 2016-01-03
+2016-11-07 08:14:33.271 DEBUG 11708 --- [    Test worker] assignment.datasource.DefaultDataSource  : got prices #assignment.model.Prices@7bba6ae6
+2016-11-07 08:14:33.276 DEBUG 11708 --- [    Test worker] assignment.datasource.DefaultDataSource  : get close prices of FB from 2016-01-02 to 2016-01-04
+2016-11-07 08:14:33.278 DEBUG 11708 --- [    Test worker] assignment.datasource.DefaultDataSource  : got prices #assignment.model.Prices@25a026f2
+2016-11-07 08:14:33.282 DEBUG 11708 --- [    Test worker] assignment.datasource.DefaultDataSource  : get close prices of INVALID from 2016-01-01 to 2016-01-01
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

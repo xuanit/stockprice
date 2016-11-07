@@ -22,7 +22,7 @@ import java.util.Optional;
  * Created by xuan on 11/3/2016.
  */
 @RestController
-@RequestMapping("api/v2/")
+@RequestMapping(value = "api/v2/", produces = "application/json")
 public class DayMovingAverageController {
 
     @Autowired
