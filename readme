@@ -1,9 +1,56 @@
-How to Run: 
-+ Run the command: java -jar stockPriceService.jar
+1) Build the system by using Gradle.
 
-Document for story #3
-	REST API supports GET, URI: /api/v2/200dma?startDate=YYYY-MM-DD&ticker={tickerSymbol},{tickerSymbol}. For example: /api/v2/200dma?startDate=2016-11-25&ticker=FB,MSFT
-	Json is returned in the following format:
+2) Run the command: java -jar stockPriceService.jar.
+Notes: This requires internet connection to get data from third party service.
+
+3) Requirements:
+Story #1:
+		As a REST API Client, I want to request a ​Close Price ​ for a ​ticker symbol ​ for a range of
+		dates (start date and end date).
+		Acceptance Criteria
+		● REST API supports GET with URI, /api/v2/{ticker
+		symbol}/closePrice?startDate=YYYY-MM-DD&endDate=YYYY-MM-DD. For example: http://localhost:8080/api/v2/FB/closePrice?startDate=2016-09-03&endDate=2016-11-01
+		● Json is returned in the following format:
+		{
+		"Prices": {
+		"Ticker": "GE",
+		"DateClose": ["1999-03-30", "28.32"],
+		“DateClose": ["1999-03-31", "27.94"]...
+		}
+		}
+		● An invalid ticker symbol or range of dates returns a easy to understand error and
+		HTTP Code of 404
+		Definition of Done
+		● Unit Tests pass for all Acceptance Criteria
+		Technical Notes
+		● Data source for this will be
+		https://www.quandl.com/docs/api#quick-start-examples.
+Story #2:
+		As a REST API Client, I want to request the ​200 day moving average ​ price for a ticker
+		symbol beginning with a start date.
+		Acceptance Criteria
+		● REST API supports GET with URI, /api/v2/{ticker
+		symbol}/200dma?startDate=YYYY-MM-DD
+		● Json is returned in the following format:
+		{
+		"200dma": {
+		"Ticker": "GE",
+		"Avg": "28.32"
+		}
+		}
+		● An invalid ticker symbol or start date returns a easy to understand error and
+		HTTP Code of 404. If there is no data for the start date, the first possible start
+		date is suggested in the error message.
+		Definition of Done
+		● Unit Tests pass for all Acceptance Criteria
+		Technical Notes
+		● See Technical Notes for User Story #1
+Story #3:
+		As a REST API Client, I want to make a single request for the ​200 day moving average
+		price for a up to 1000 ticker symbols beginning with a start date.
+		Acceptance Criteria
+		● REST API supports GET, URI: /api/v2/200dma?startDate=YYYY-MM-DD&ticker={tickerSymbol},{tickerSymbol}. For example: /api/v2/200dma?startDate=2016-11-25&ticker=FB,MSFT
+		Json is returned in the following format:
 		{
 		 200dmas:
 			{
@@ -23,6 +70,17 @@ Document for story #3
 			}
 		 }
 		}
-	Invalid startDate returns Http Status 404. Invalid ticker parameter format returns Http Status 404.
+		● An invalid ticker symbol generates a message in the JSON response that there
+		is no data for it.
+		● If there is no data for a ticker symbol with the start date provided, data for the
+		first possible start date is provided back to the client.
+		Definition of Done
+		● Unit Tests pass for all Acceptance Criteria
+		Technical Notes
+		● See Technical Notes for User Story #1
+Story #4:
+		As the Microservice, I want to cache the Close Dates for the 100 Most Frequently Used
+		ticker symbols so that I will reduce latency on User Story #1
+		
 	
 Please see architecture.png to have an overview about the system.
